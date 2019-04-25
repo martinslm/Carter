@@ -4,11 +4,31 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Carter"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="2000"
       WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Title="">
 
     <Grid>
-        
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Lime" Offset="0"/>
+                <GradientStop Color="LimeGreen" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel Background="White" Margin="60" Width="450" HorizontalAlignment="Center">
+            <TextBlock Name="Carter" 
+                FontSize="48" 
+                HorizontalAlignment="Center" 
+                Margin="5" 
+                Foreground="LimeGreen"
+                Style="{StaticResource MaterialDesignBody2TextBlock}" FontWeight="Light"
+                >
+         Carter</TextBlock>
+            <StackPanel Margin='20,50,20,0' Orientation="Horizontal"  HorizontalAlignment="Center">
+                <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Foreground="#707070"/>
+                <TextBox materialDesign:HintAssist.Hint="Usuário" Width="300"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
