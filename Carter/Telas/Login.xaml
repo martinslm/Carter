@@ -7,7 +7,11 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="2000"
-      WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Title="">
+      WindowStartupLocation="CenterScreen" 
+      ResizeMode="NoResize" 
+      WindowStyle="None" 
+      WindowState="Maximized" 
+     Title="">
 
     <Grid>
         <Grid.Background>
@@ -16,19 +20,48 @@
                 <GradientStop Color="LimeGreen" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <StackPanel Background="White" Margin="60" Width="450" HorizontalAlignment="Center">
+        <StackPanel Background="White" Margin="60" Width="450" Height="500" HorizontalAlignment="Center">
             <TextBlock Name="Carter" 
                 FontSize="48" 
                 HorizontalAlignment="Center" 
-                Margin="5" 
-                Foreground="LimeGreen"
+                Margin="0,50,0,0"
+                Foreground="GreenYellow"
                 Style="{StaticResource MaterialDesignBody2TextBlock}" FontWeight="Light"
                 >
          Carter</TextBlock>
-            <StackPanel Margin='20,50,20,0' Orientation="Horizontal"  HorizontalAlignment="Center">
-                <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Foreground="#707070"/>
-                <TextBox materialDesign:HintAssist.Hint="Usuário" Width="300"/>
+            <StackPanel Margin='20,60,20,0' 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center">
+                <materialDesign:PackIcon 
+                    Kind="Account" 
+                    VerticalAlignment="Center" 
+                    Foreground="#707070"/>
+                <TextBox materialDesign:HintAssist.Hint="Usuário" 
+                         Width="300"
+                         Name="Usuario">
+                    <Binding Path="Usuario">
+                    </Binding>
+                </TextBox>
             </StackPanel>
+            <StackPanel  Margin='20,60,20,0' 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center">
+                <materialDesign:PackIcon Grid.Row="3" 
+                                         Grid.Column="2" 
+                                         Kind="Key" 
+                                         Foreground="#707070" 
+                                         HorizontalAlignment="Right" />
+                <PasswordBox materialDesign:HintAssist.Hint="Senha" 
+                         Width="300" Name="Senha" PasswordChar="{Binding Senha}"/>
+            </StackPanel>
+            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Margin="0,45,0,0">ACESSAR</Button>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <TextBlock Padding="50">QUERO ME CADASTRAR</TextBlock>
+            <TextBlock Padding="50"  HorizontalAlignment="Right">ESQUECI MINHA SENHA</TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Background="Black" Margin="60" Width="800" Height="600">
+            
         </StackPanel>
     </Grid>
 </Window>

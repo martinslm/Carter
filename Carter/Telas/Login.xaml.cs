@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Carter.ViewModels;
+using System.Windows;
 
 namespace Carter
 {
@@ -7,9 +8,11 @@ namespace Carter
     /// </summary>
     public partial class Login : Window
     {
+        LoginViewModel _viewmodel = new LoginViewModel();
         public Login()
         {
             InitializeComponent();
+            DataContext = _viewmodel;
         }
     }
 }
