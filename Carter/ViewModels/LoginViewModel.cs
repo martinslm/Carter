@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Carter.ViewModels
 {
@@ -10,7 +7,7 @@ namespace Carter.ViewModels
     {
         private string _usuario;
         private string _senha;
-
+        private ICommand _acessarCommand;
         public string Usuario 
         {
             get { return _usuario; }
@@ -21,7 +18,19 @@ namespace Carter.ViewModels
             get { return _senha; }
             set { _senha = value; }
         }
+        public ICommand AcessarCommand
+        {
+            get { return _acessarCommand; }
+        }
 
+        private void InstanciarCommands()
+        {
+            _acessarCommand = new CommandHandler(p => FazerLogin());
+        }
 
+        private void FazerLogin()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

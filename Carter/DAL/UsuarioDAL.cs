@@ -8,5 +8,6 @@ namespace Carter.DAL
 {
     class UsuarioDAL
     {
+
     }
 }
