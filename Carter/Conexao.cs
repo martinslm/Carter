@@ -7,14 +7,21 @@ using System.Threading.Tasks;
 
 namespace Carter
 {
-    class Conexao
+    public class Conexao
     {
-        SqlConnection Connection = new SqlConnection();
-        public Conexao()
+        static private SqlConnection _connection;
+
+        private static SqlConnection Connection
         {
-            Connection.ConnectionString = @"Data Source=DESKTOP-KU4CSAM\SQLEXPRESS;Initial Catalog=carterSystem;Integrated Security=True";
+            get
+            {
+                if (_connection == null)
+                    _connection = new SqlConnection(@"Data Source=DESKTOP-KU4CSAM\SQLEXPRESS;Initial Catalog=carterSystem;Integrated Security=True");
+                return _connection;
+            }
         }
-        public SqlConnection Conectar()
+
+        public static SqlConnection Conectar()
         {
             if(Connection.State == System.Data.ConnectionState.Closed)
             {

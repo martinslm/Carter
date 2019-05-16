@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="2000"
       WindowStartupLocation="CenterScreen" 
-      ResizeMode="NoResize" 
+      ResizeMode="NoResize"
       WindowStyle="None" 
       WindowState="Maximized" 
      Title="">
@@ -20,13 +20,30 @@
                 <GradientStop Color="#3CB371" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <StackPanel Background="White" Margin="60" Width="450" Height="500" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Right">
+            <Label>
+                <materialDesign:PackIcon 
+                    Kind="Close" 
+                    Foreground="White"
+                    Width="25"
+                    Height="25"
+                    Padding="5"
+                />
+            </Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Background="White" Margin="60" Width="450" Height="500" HorizontalAlignment="Center">
             <TextBlock Name="Carter" 
                 FontSize="48" 
                 HorizontalAlignment="Center" 
                 Margin="0,50,0,0"
                 Foreground="#3CB371"
-                Style="{StaticResource MaterialDesignBody2TextBlock}" FontWeight="Light"
+                Style="{StaticResource MaterialDesignBody2TextBlock}" FontWeight="DemiBold"
                 >
          Carter</TextBlock>
             <StackPanel Margin='20,60,20,0' 
@@ -56,12 +73,17 @@
                              Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                          Width="300" Name="Senha"/>
             </StackPanel>
-            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="200" Margin="0,45,0,0" Command="{Binding AcessarCommand}">ACESSAR</Button>
+            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" 
+                    Width="200" 
+                    Margin="0,45,0,0" 
+                    Command="{Binding AcessarCommand}"
+                    CommandParameter="{Binding ElementName=Senha}">ACESSAR</Button>
+            <Label  Foreground="DarkRed" TextBlock.FontSize="10"  Padding="10" HorizontalAlignment="Center" FontWeight="Bold" Content="{Binding TextAvisoLogin}"></Label>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-            <TextBlock Padding="50">
-                <Hyperlink TextDecorations="none" Foreground="#707070">QUERO ME CADASTRAR</Hyperlink></TextBlock>
-            <TextBlock Padding="50"  HorizontalAlignment="Right" Name="EsqueceuSuaSenha">
-                <Hyperlink TextDecorations="none" Foreground="#707070">ESQUECI MINHA SENHA</Hyperlink></TextBlock>
+            <TextBlock Padding="30">
+                <Hyperlink TextDecorations="none" Foreground="#707070"  Command="{Binding QueroMeCadastrarCommand}">QUERO ME CADASTRAR</Hyperlink></TextBlock>
+            <TextBlock Padding="30"  HorizontalAlignment="Right" Name="EsqueceuSuaSenha">
+                <Hyperlink TextDecorations="none" Foreground="#707070" Command="{Binding EsqueciMinhaSenhaCommand}">ESQUECI MINHA SENHA</Hyperlink></TextBlock>
             </StackPanel>
         </StackPanel>
         <StackPanel Background="Black" Margin="60" Width="800" Height="600" Visibility="Collapsed">

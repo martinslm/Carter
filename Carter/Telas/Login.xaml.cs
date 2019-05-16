@@ -1,5 +1,8 @@
-﻿using Carter.ViewModels;
+﻿using Carter.Telas;
+using Carter.ViewModels;
+using System;
 using System.Windows;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Carter
 {
@@ -8,12 +11,37 @@ namespace Carter
     /// </summary>
     public partial class Login : Window
     {
-        LoginViewModel _viewmodel = new LoginViewModel();
+        private readonly LoginViewModel _viewmodel;
         public Login()
         {
-            InitializeComponent();
+            _viewmodel = new LoginViewModel();
             DataContext = _viewmodel;
+            InitializeComponent();
+            InitializeDelegates();
         }
-        //Senha.Password
+
+        private void InitializeDelegates()
+        {
+            _viewmodel.AbrirTelaCadastroUsuario = AbrirTelaCadastroUsuario;
+            _viewmodel.AbrirTelaEsqueceuASenha = AbrirTelaEsqueceuASenha;
+        }
+
+        private void AbrirTelaCadastroUsuario()
+        {
+            var cadastroUsuario = new CadastroUsuario();
+            cadastroUsuario.ShowDialog();
+
+
+        }
+        private void AbrirTelaEsqueceuASenha()
+        {
+
+        }
+        
+        public new bool? ShowDialog()
+        {
+            Owner.Opacity = 0.85;
+            return base.ShowDialog();
+        }
     }
 }
