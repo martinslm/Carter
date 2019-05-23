@@ -43,5 +43,10 @@ namespace Carter
             Owner.Opacity = 0.85;
             return base.ShowDialog();
         }
+
+        private void Fechartela(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

@@ -26,17 +26,17 @@
         </Grid.RowDefinitions>
 
         <StackPanel HorizontalAlignment="Right">
-            <Label>
+            <Label RenderTransformOrigin="-0.057,1.086" 
+                       MouseDown="Fechartela">
                 <materialDesign:PackIcon 
                     Kind="Close" 
                     Foreground="White"
                     Width="25"
                     Height="25"
-                    Padding="5"
+                    Padding="5" RenderTransformOrigin="-0.4,3.08"
                 />
             </Label>
         </StackPanel>
-
         <StackPanel Grid.Row="1" Background="White" Margin="60" Width="450" Height="500" HorizontalAlignment="Center">
             <TextBlock Name="Carter" 
                 FontSize="48" 
