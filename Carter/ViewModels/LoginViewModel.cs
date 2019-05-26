@@ -64,7 +64,6 @@ namespace Carter.ViewModels
         {
             _esqueciMinhaSenhaCommand = new CommandHandler(p => AbrirTelaEsqueceuASenha());
             _queroMeCadastrarCommand = new CommandHandler(p => AbrirTelaCadastroUsuario());
-
         }
         private void FazerLogin(object obj)
         {

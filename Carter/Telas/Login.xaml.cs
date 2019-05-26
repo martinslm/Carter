@@ -19,7 +19,6 @@ namespace Carter
             InitializeComponent();
             InitializeDelegates();
         }
-
         private void InitializeDelegates()
         {
             _viewmodel.AbrirTelaCadastroUsuario = AbrirTelaCadastroUsuario;
@@ -29,6 +28,7 @@ namespace Carter
         private void AbrirTelaCadastroUsuario()
         {
             var cadastroUsuario = new CadastroUsuario();
+            cadastroUsuario.Owner = this;
             cadastroUsuario.ShowDialog();
 
 

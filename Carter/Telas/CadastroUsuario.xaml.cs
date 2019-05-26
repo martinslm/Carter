@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Carter.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace Carter.Telas
     /// </summary>
     public partial class CadastroUsuario : Window
     {
+        private readonly CadastroUsuarioViewModel _viewmodel;
+
         public CadastroUsuario()
         {
+            _viewmodel = new CadastroUsuarioViewModel();
             InitializeComponent();
+            DataContext = _viewmodel;
+            _viewmodel.AtribuirSenhas = AtribuirSenhas;
         }
+        private void AtribuirSenhas()
+        {
+            _viewmodel.Senha = SenhaCadastro.Password;
+            _viewmodel.ConfirmacaoSenha = SenhaConfirmacao.Password;
+        }
+
     }
 }

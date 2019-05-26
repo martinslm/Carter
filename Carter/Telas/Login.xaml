@@ -80,14 +80,11 @@
                     CommandParameter="{Binding ElementName=Senha}">ACESSAR</Button>
             <Label  Foreground="DarkRed" TextBlock.FontSize="10"  Padding="10" HorizontalAlignment="Center" FontWeight="Bold" Content="{Binding TextAvisoLogin}"></Label>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-            <TextBlock Padding="30">
+                <TextBlock Padding="30">
                 <Hyperlink TextDecorations="none" Foreground="#707070"  Command="{Binding QueroMeCadastrarCommand}">QUERO ME CADASTRAR</Hyperlink></TextBlock>
-            <TextBlock Padding="30"  HorizontalAlignment="Right" Name="EsqueceuSuaSenha">
+                <TextBlock Padding="30"  HorizontalAlignment="Right" Name="EsqueceuSuaSenha">
                 <Hyperlink TextDecorations="none" Foreground="#707070" Command="{Binding EsqueciMinhaSenhaCommand}">ESQUECI MINHA SENHA</Hyperlink></TextBlock>
             </StackPanel>
-        </StackPanel>
-        <StackPanel Background="Black" Margin="60" Width="800" Height="600" Visibility="Collapsed">
-            
         </StackPanel>
     </Grid>
 </Window>

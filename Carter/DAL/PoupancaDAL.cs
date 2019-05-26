@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Carter.DAL
+{
+    public class PoupancaDAL
+    {
+        /*public int CadastrarEObterIdPoupanca(decimal valorPoupanca, DateTime dataObjetivoPoupanca)
+        {
+
+        }*/
+    }
+}
