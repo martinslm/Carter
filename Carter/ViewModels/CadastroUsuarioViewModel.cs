@@ -142,11 +142,16 @@ namespace Carter.ViewModels
             {
                 int idPoupanca = 0;
                 var idSalario = _salarioDAL.InserirSalarioEObterId(Salario);
+                //corrigir futuramente para colocar tudo isso dentro de um Try Catch, retornar se o usuário foi cadastrado com sucesso ou nao. Dentro do metodo
+                //cadastrar tudo dentro de uma transaction para comitar somente em caso de sucesso. E dar rollback em todos os itens em casos de erro em qualquer um 
+                //dos metodos.
+                _usuarioDAL.CadastrarUsuario(Email, Senha, idSalario, UtilizaPoupanca);
                 if(UtilizaPoupanca)
                 {
-                    idPoupanca = _poupancaDAL.CadastrarEObterIdPoupanca(ValorPoupanca, DataObjetivoPoupanca);
+                    var idUsuario = _usuarioDAL.ObterIdUsuarioPorEmail(Email);
+                    idPoupanca = _poupancaDAL.CadastrarEObterIdPoupanca(ValorPoupanca, DataObjetivoPoupanca, idUsuario);
+                    _usuarioDAL.AtualizarDadosPoupancaPorUsuario(idUsuario, idPoupanca, CategoriaPoupanca);
                 }
-                //_usuarioDAL.cadastrarusuario(passardados)
             }
         }
 

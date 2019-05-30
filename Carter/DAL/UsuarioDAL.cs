@@ -91,9 +91,67 @@ namespace Carter.DAL
             return false;
         }
 
-        public void cadastrarUsuario()
+        public void CadastrarUsuario(string email, string senha, int idSalario, bool utilizaPoupanca)
         {
+            string strsql = @"INSERT INTO usuario (
+	                                        email
+	                                        ,passwd_usuario
+	                                        ,salario_atual
+	                                        ,utiliza_poupanca
+	                                        )
+                                        VALUES (
+	                                        @email
+	                                        ,@senha
+	                                        ,@idSalario
+	                                        ,@utilizaPoupanca 
+	                                        )";
 
+            using (var command = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@senha", senha);
+                command.Parameters.AddWithValue("@idSalario", idSalario);
+                command.Parameters.AddWithValue("@utilizaPoupanca", utilizaPoupanca == true ? 1 : 0);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public int ObterIdUsuarioPorEmail(string email)
+        {
+            string strsql = @"SELECT id_usuario
+                              FROM usuario
+                              WHERE email = @email";
+
+            using (var busca = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                busca.Parameters.AddWithValue("@email", email);
+                using (var reader = busca.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return Convert.ToInt32(reader["id_usuario"]);
+                    }
+                }
+            }
+            return 0;
+        }
+
+        public void AtualizarDadosPoupancaPorUsuario(int idUsuario, int idPoupanca, Categoria categoriaPoupanca)
+        {
+            string strsql = @"UPDATE usuario
+                            SET objetivo_valor_poupanca = @idPoupanca
+                                , categoria_poupanca = @idCategoria
+                            WHERE id_usuario = @idUsuario";
+
+            using (var command = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                command.Parameters.AddWithValue("@idPoupanca", idPoupanca);
+                command.Parameters.AddWithValue("@idCategoria", categoriaPoupanca.Id);
+                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
