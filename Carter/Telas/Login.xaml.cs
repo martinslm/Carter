@@ -23,6 +23,13 @@ namespace Carter
         {
             _viewmodel.AbrirTelaCadastroUsuario = AbrirTelaCadastroUsuario;
             _viewmodel.AbrirTelaEsqueceuASenha = AbrirTelaEsqueceuASenha;
+            _viewmodel.AbrirTelaPrincipal = AbrirTelaPrincipal;
+        }
+
+        private void AbrirTelaPrincipal()
+        {
+            var principal = new Principal();
+            principal.ShowDialog();
         }
 
         private void AbrirTelaCadastroUsuario()

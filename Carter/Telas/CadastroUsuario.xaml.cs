@@ -1,18 +1,5 @@
 ﻿using Carter.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Carter.Telas
 {
@@ -29,11 +16,17 @@ namespace Carter.Telas
             InitializeComponent();
             DataContext = _viewmodel;
             _viewmodel.AtribuirSenhas = AtribuirSenhas;
+            _viewmodel.FecharTela = FecharTela;
         }
         private void AtribuirSenhas()
         {
             _viewmodel.Senha = SenhaCadastro.Password;
             _viewmodel.ConfirmacaoSenha = SenhaConfirmacao.Password;
+        }
+
+        private void FecharTela(bool dialogResult)
+        {
+            DialogResult = dialogResult;     
         }
 
     }

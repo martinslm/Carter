@@ -99,14 +99,16 @@
                 </StackPanel>
                     <StackPanel Orientation="Horizontal">
                     <Label Padding="10" VerticalAlignment="Center">Qual sua data objetivo?</Label>
-                    <DatePicker x:Name="DataObjetivoPoupanca" Margin="45,0,0,0" Width="150">
+                    <DatePicker x:Name="DataObjetivoPoupanca" Margin="45,0,0,0" Width="150" SelectedDate="{Binding DataObjetivoPoupanca}">
                     </DatePicker>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Padding="10" VerticalAlignment="Center">Escolha a categoria da Poupança:</Label>
                 <ComboBox x:Name="CategoriaPoupanca" Width="145" ItemsSource="{Binding Categoria}" DisplayMemberPath="Descricao">
-                    
-                </ComboBox>
+                        <ComboBox.SelectedValue>
+                            <Binding Path="CategoriaPoupanca"/>
+                        </ComboBox.SelectedValue>
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="20">
                     <Button Margin="40,0,50,0" Padding="5" Width="100" Command="{Binding CancelarCommand}">Cancelar</Button>

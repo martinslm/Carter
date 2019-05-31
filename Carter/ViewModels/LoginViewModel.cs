@@ -55,6 +55,7 @@ namespace Carter.ViewModels
         }
         public Action AbrirTelaCadastroUsuario { get; set; }
         public Action AbrirTelaEsqueceuASenha { get; set; }
+        public Action AbrirTelaPrincipal { get; set; }
         #endregion
         public LoginViewModel()
         {
@@ -85,7 +86,8 @@ namespace Carter.ViewModels
                     RaisePropertyChanged("TextAvisoLogin");
                     break;
                 case StatusLogin.Sucesso:
-                    //adicionarfunçãopararedirecionarparaapaginainicial
+                    AbrirTelaPrincipal();
+                    //carregar usuario na sessão, implementar logica.
                     break;
             }
         }

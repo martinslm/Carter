@@ -27,6 +27,7 @@ namespace Carter.ViewModels
         private SalarioDAL _salarioDAL = new SalarioDAL();
         #endregion
         public Action AtribuirSenhas;
+        public Action <bool> FecharTela { get; set; }
         #region [Atributos Publicos]
         public string Senha { get; set; }
         public string ConfirmacaoSenha { get; set; }
@@ -50,6 +51,7 @@ namespace Carter.ViewModels
             set
             {
                 _email = value;
+                RaisePropertyChanged();
             }
         }
         public decimal Salario
@@ -61,6 +63,8 @@ namespace Carter.ViewModels
             set
             {
                 _salario = value;
+                RaisePropertyChanged();
+                PodeCadastrar();
             }
         }
         public bool UtilizaPoupanca
@@ -72,6 +76,7 @@ namespace Carter.ViewModels
             set
             {
                 _utilizaPoupanca = value;
+                RaisePropertyChanged();
             }
         }
         public decimal ValorPoupanca
@@ -132,8 +137,13 @@ namespace Carter.ViewModels
         private void InstanciarCommands()
         {
             _cadastrarCommand = new CommandHandler(p => CadastrarConta(), p => PodeCadastrar());
-            _cancelarCommand = new CommandHandler(p => throw new NotImplementedException());
+            _cancelarCommand = new CommandHandler(p => CancelarConta());
 
+        }
+
+        private void CancelarConta()
+        {
+            FecharTela(false);
         }
 
         private void CadastrarConta()
@@ -151,15 +161,19 @@ namespace Carter.ViewModels
                     var idUsuario = _usuarioDAL.ObterIdUsuarioPorEmail(Email);
                     idPoupanca = _poupancaDAL.CadastrarEObterIdPoupanca(ValorPoupanca, DataObjetivoPoupanca, idUsuario);
                     _usuarioDAL.AtualizarDadosPoupancaPorUsuario(idUsuario, idPoupanca, CategoriaPoupanca);
+                    //inserir função para incluir o ID do usuario no salario também.
+                    //Inserir IsEnabled na poupança para permitir informações para edição somente quando o Utiliza Poupanca for True. 
                 }
+
+                FecharTela(true);
             }
         }
 
         private bool PodeCadastrar()
         {
             AtribuirSenhas();
-            /*if (Email == null || Senha == null || ConfirmacaoSenha == null || Salario <= 0)
-                return false;*/
+            if (Email == null ||  Salario <= 0 || Senha == null || ConfirmacaoSenha == null)
+                return false;
 
                 return true;
         }
