@@ -92,6 +92,7 @@
                          Width="150"
                          x:Name="ValorPoupanca"
                         HorizontalAlignment="Left"
+                        IsEnabled="{Binding DadosPoupancaIsEnabled}"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                         <Binding Path="ValorPoupanca">
                         </Binding>
@@ -99,12 +100,12 @@
                 </StackPanel>
                     <StackPanel Orientation="Horizontal">
                     <Label Padding="10" VerticalAlignment="Center">Qual sua data objetivo?</Label>
-                    <DatePicker x:Name="DataObjetivoPoupanca" Margin="45,0,0,0" Width="150" SelectedDate="{Binding DataObjetivoPoupanca}">
+                    <DatePicker x:Name="DataObjetivoPoupanca" Margin="45,0,0,0" Width="150" IsEnabled="{Binding DadosPoupancaIsEnabled}" SelectedDate="{Binding DataObjetivoPoupanca}">
                     </DatePicker>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Padding="10" VerticalAlignment="Center">Escolha a categoria da Poupança:</Label>
-                <ComboBox x:Name="CategoriaPoupanca" Width="145" ItemsSource="{Binding Categoria}" DisplayMemberPath="Descricao">
+                    <ComboBox x:Name="CategoriaPoupanca" Width="145" ItemsSource="{Binding Categoria}" DisplayMemberPath="Descricao" IsEnabled="{Binding DadosPoupancaIsEnabled}">
                         <ComboBox.SelectedValue>
                             <Binding Path="CategoriaPoupanca"/>
                         </ComboBox.SelectedValue>

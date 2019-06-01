@@ -32,5 +32,20 @@ namespace Carter.DAL
 
             return 0;
         }
+
+        public void VincularIdUsuarioAoSalario(int idSalario, int idUsuario)
+        {
+            string strsql = @" UPDATE historico_salarios 
+                               SET id_usuario = @idUsuario
+                               WHERE id_salario = @idSalario";
+
+            using (var command = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                command.Parameters.AddWithValue("@idSalario", idSalario);
+
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

@@ -66,6 +66,7 @@
     <Compile Include="DAL\SalarioDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="Enums\StatusLogin.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Telas\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

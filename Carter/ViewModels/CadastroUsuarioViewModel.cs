@@ -2,12 +2,7 @@
 using Carter.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Input;
-
 namespace Carter.ViewModels
 {
     public class CadastroUsuarioViewModel : BindableObject
@@ -22,6 +17,7 @@ namespace Carter.ViewModels
         private Categoria _categoriaPoupanca;
         private ICommand _cancelarCommand;
         private ICommand _cadastrarCommand;
+        private bool _dadosPoupancaIsEnabled = false;
         private UsuarioDAL _usuarioDAL = new UsuarioDAL();
         private PoupancaDAL _poupancaDAL = new PoupancaDAL();
         private SalarioDAL _salarioDAL = new SalarioDAL();
@@ -76,9 +72,22 @@ namespace Carter.ViewModels
             set
             {
                 _utilizaPoupanca = value;
-                RaisePropertyChanged();
+                AtualizarIsEnabled();
             }
         }
+
+        private void AtualizarIsEnabled()
+        {
+            _dadosPoupancaIsEnabled = false;
+
+            if (UtilizaPoupanca == true)
+            {
+                _dadosPoupancaIsEnabled = true;
+            }
+
+            RaisePropertyChanged("DadosPoupancaIsEnabled");
+        }
+
         public decimal ValorPoupanca
         {
             get
@@ -119,6 +128,10 @@ namespace Carter.ViewModels
                 return _usuarioDAL.BuscarCategorias();
             }
         }
+        public bool DadosPoupancaIsEnabled
+        {
+            get { return _dadosPoupancaIsEnabled; }
+        }
         public ICommand CadastrarCommand
         {
             get { return _cadastrarCommand; }
@@ -150,22 +163,29 @@ namespace Carter.ViewModels
         {
             if(ValidarDados())
             {
-                int idPoupanca = 0;
-                var idSalario = _salarioDAL.InserirSalarioEObterId(Salario);
-                //corrigir futuramente para colocar tudo isso dentro de um Try Catch, retornar se o usuário foi cadastrado com sucesso ou nao. Dentro do metodo
-                //cadastrar tudo dentro de uma transaction para comitar somente em caso de sucesso. E dar rollback em todos os itens em casos de erro em qualquer um 
-                //dos metodos.
-                _usuarioDAL.CadastrarUsuario(Email, Senha, idSalario, UtilizaPoupanca);
-                if(UtilizaPoupanca)
+                try
                 {
+                   // using (var transaction = new Transactions.TransactionScope()) - Não ta implementando o Transactions???????? Framework ta ok.
+                    int idPoupanca = 0;
+                    var idSalario = _salarioDAL.InserirSalarioEObterId(Salario);
+                    _usuarioDAL.CadastrarUsuario(Email, Senha, idSalario, UtilizaPoupanca);
                     var idUsuario = _usuarioDAL.ObterIdUsuarioPorEmail(Email);
-                    idPoupanca = _poupancaDAL.CadastrarEObterIdPoupanca(ValorPoupanca, DataObjetivoPoupanca, idUsuario);
-                    _usuarioDAL.AtualizarDadosPoupancaPorUsuario(idUsuario, idPoupanca, CategoriaPoupanca);
-                    //inserir função para incluir o ID do usuario no salario também.
-                    //Inserir IsEnabled na poupança para permitir informações para edição somente quando o Utiliza Poupanca for True. 
-                }
+                    _salarioDAL.VincularIdUsuarioAoSalario(idSalario, idUsuario);
 
-                FecharTela(true);
+                    if (UtilizaPoupanca)
+                    {
+                        idPoupanca = _poupancaDAL.CadastrarEObterIdPoupanca(ValorPoupanca, DataObjetivoPoupanca, idUsuario);
+                        _usuarioDAL.AtualizarDadosPoupancaPorUsuario(idUsuario, idPoupanca, CategoriaPoupanca);
+                        //tela de login incluir ação de enter na senha. 
+                    }
+
+                    FecharTela(true);
+                }
+                catch (Exception Ex)
+                {
+                    string error = string.Format("Erro ao cadastrar usuário: {0}", Ex);
+                    Log.Add(error);
+                }
             }
         }
 
