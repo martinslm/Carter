@@ -62,11 +62,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BindableObject.cs" />
+    <Compile Include="DAL\CategoriaDAL.cs" />
     <Compile Include="DAL\PoupancaDAL.cs" />
     <Compile Include="DAL\SalarioDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="Enums\StatusLogin.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="Models\Sessao.cs" />
     <Compile Include="Telas\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -80,6 +82,7 @@
     </Compile>
     <Compile Include="ViewModels\CadastroUsuarioViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\PrincipalViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexao.cs" />

@@ -81,7 +81,7 @@
                                Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Visibility="{Binding PoupancaVisibility }">
                     <materialDesign:PackIcon Kind="BankTransferIn" Width="30" Height="30" Foreground="#FFFAFA" VerticalAlignment="Center"/>
                     <TextBlock Text="Poupança"
                                VerticalAlignment="Center" 

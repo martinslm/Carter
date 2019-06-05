@@ -1,5 +1,6 @@
 ﻿using Carter.DAL;
 using Carter.Enums;
+using Carter.Models;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -56,6 +57,7 @@ namespace Carter.ViewModels
         public Action AbrirTelaCadastroUsuario { get; set; }
         public Action AbrirTelaEsqueceuASenha { get; set; }
         public Action AbrirTelaPrincipal { get; set; }
+        public Action<bool> FecharJanelaLogin { get; set; }
         #endregion
         public LoginViewModel()
         {
@@ -86,10 +88,16 @@ namespace Carter.ViewModels
                     RaisePropertyChanged("TextAvisoLogin");
                     break;
                 case StatusLogin.Sucesso:
+                    CarregarUsuarioNaSessao(idUsuario);
+                    //FecharJanelaLogin(false);
                     AbrirTelaPrincipal();
-                    //carregar usuario na sessão, implementar logica.
                     break;
             }
+        }
+
+        private void CarregarUsuarioNaSessao(int idUsuario)
+        {
+            Sessao.Usuario = _usuarioDAL.ObterDadosUsuarioPorId(idUsuario);
         }
         #endregion
     }

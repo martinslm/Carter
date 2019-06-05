@@ -2,10 +2,10 @@
 
 namespace Carter.Models
 {
-    class Salario
+    public class Salario
     {
         public int Id { get; set; }
-        public double Valor { get; set; }
+        public decimal Valor { get; set; }
         public DateTime DataCadastro { get; set; }
     }
 }

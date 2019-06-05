@@ -10,9 +10,13 @@ namespace Carter.Telas
     /// </summary>
     public partial class Principal : Window
     {
+        private readonly PrincipalViewModel _viewmodel;
+
         public Principal()
         {
+            _viewmodel = new PrincipalViewModel();
             InitializeComponent();
+            DataContext = _viewmodel;
         }
 
         private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
