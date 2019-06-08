@@ -77,6 +77,8 @@
     <Compile Include="Telas\CadastroUsuario.xaml.cs">
       <DependentUpon>CadastroUsuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Categoria.xaml.cs">
+      <DependentUpon>Categoria.xaml</DependentUpon>
     <Compile Include="Telas\HistoricoDeSalarios.xaml.cs">
       <DependentUpon>HistoricoDeSalarios.xaml</DependentUpon>
     </Compile>
@@ -84,6 +86,7 @@
       <DependentUpon>Principal.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CadastroUsuarioViewModel.cs" />
+    <Compile Include="ViewModels\CategoriaViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PrincipalViewModel.cs" />
   </ItemGroup>
@@ -134,6 +137,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Telas\Categoria.xaml">
     <Page Include="Telas\HistoricoDeSalarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
