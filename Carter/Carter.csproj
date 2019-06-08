@@ -77,6 +77,9 @@
     <Compile Include="Telas\CadastroUsuario.xaml.cs">
       <DependentUpon>CadastroUsuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Telas\HistoricoDeSalarios.xaml.cs">
+      <DependentUpon>HistoricoDeSalarios.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Principal.xaml.cs">
       <DependentUpon>Principal.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\CadastroUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\HistoricoDeSalarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -24,12 +24,12 @@ namespace Carter
             _viewmodel.AbrirTelaCadastroUsuario = AbrirTelaCadastroUsuario;
             _viewmodel.AbrirTelaEsqueceuASenha = AbrirTelaEsqueceuASenha;
             _viewmodel.AbrirTelaPrincipal = AbrirTelaPrincipal;
-            _viewmodel.FecharJanelaLogin = FecharJanelaLogin;
         }
 
         private void AbrirTelaPrincipal()
         {
             var principal = new Principal();
+            this.Close();
             principal.ShowDialog();
         }
 
@@ -55,12 +55,6 @@ namespace Carter
         private void Fechartela(object sender, System.Windows.Input.MouseEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
-        }
-
-
-        private void FecharJanelaLogin(bool dialogResult)
-        {
-            DialogResult = dialogResult;
         }
     }
 }

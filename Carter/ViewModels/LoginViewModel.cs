@@ -57,7 +57,6 @@ namespace Carter.ViewModels
         public Action AbrirTelaCadastroUsuario { get; set; }
         public Action AbrirTelaEsqueceuASenha { get; set; }
         public Action AbrirTelaPrincipal { get; set; }
-        public Action<bool> FecharJanelaLogin { get; set; }
         #endregion
         public LoginViewModel()
         {
@@ -89,7 +88,6 @@ namespace Carter.ViewModels
                     break;
                 case StatusLogin.Sucesso:
                     CarregarUsuarioNaSessao(idUsuario);
-                    //FecharJanelaLogin(false);
                     AbrirTelaPrincipal();
                     break;
             }
