@@ -62,6 +62,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BindableObject.cs" />
+    <Compile Include="DAL\CategoriaDAL.cs" />
     <Compile Include="DAL\PoupancaDAL.cs" />
     <Compile Include="DAL\SalarioDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
@@ -75,10 +76,14 @@
     <Compile Include="Telas\CadastroUsuario.xaml.cs">
       <DependentUpon>CadastroUsuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Categoria.xaml.cs">
+      <DependentUpon>Categoria.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Principal.xaml.cs">
       <DependentUpon>Principal.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CadastroUsuarioViewModel.cs" />
+    <Compile Include="ViewModels\CategoriaViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +130,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\CadastroUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Categoria.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
