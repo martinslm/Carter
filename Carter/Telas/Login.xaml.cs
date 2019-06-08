@@ -29,6 +29,7 @@ namespace Carter
         private void AbrirTelaPrincipal()
         {
             var principal = new Principal();
+            this.Close();
             principal.ShowDialog();
         }
 

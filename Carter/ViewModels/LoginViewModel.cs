@@ -1,5 +1,6 @@
 ﻿using Carter.DAL;
 using Carter.Enums;
+using Carter.Models;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -86,10 +87,15 @@ namespace Carter.ViewModels
                     RaisePropertyChanged("TextAvisoLogin");
                     break;
                 case StatusLogin.Sucesso:
+                    CarregarUsuarioNaSessao(idUsuario);
                     AbrirTelaPrincipal();
-                    //carregar usuario na sessão, implementar logica.
                     break;
             }
+        }
+
+        private void CarregarUsuarioNaSessao(int idUsuario)
+        {
+            Sessao.Usuario = _usuarioDAL.ObterDadosUsuarioPorId(idUsuario);
         }
         #endregion
     }

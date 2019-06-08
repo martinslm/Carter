@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Carter.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -46,6 +47,33 @@ namespace Carter.DAL
 
                 command.ExecuteNonQuery();
             }
+        }
+
+        public Salario ObterDadosSalarioPorId(int idSalario)
+        {
+            string strsql = @"SELECT salario
+	                                ,data_cadastro
+                                FROM historico_salarios
+                                WHERE id_salario = @idSalario";
+
+            using (var busca = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                busca.Parameters.AddWithValue("@idSalario", idSalario);
+                using (var reader = busca.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Salario()
+                        {
+                            Id = idSalario,
+                            DataCadastro = Convert.ToDateTime(reader["data_cadastro"]),
+                            Valor = Convert.ToDecimal(reader["salario"])
+                        };
+                    }
+                }
+            }
+
+            return new Salario();
         }
     }
 }

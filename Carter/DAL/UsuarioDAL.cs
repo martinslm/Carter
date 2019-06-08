@@ -8,8 +8,11 @@ namespace Carter.DAL
 {
     class UsuarioDAL
     {
+        private PoupancaDAL _poupancaDAL = new PoupancaDAL();
+        private CategoriaDAL _categoriaDAL = new CategoriaDAL();
+        private SalarioDAL _salarioDAL = new SalarioDAL();
         public StatusLogin StatusLogin(string login, string senha, ref int idUsuario)
-           {
+        {
             string strsql = @" SELECT  u.id_usuario, 
                     u.email,
                     u.passwd_usuario
@@ -22,7 +25,7 @@ namespace Carter.DAL
 
                 using (var reader = busca.ExecuteReader())
                 {
-                    if(!reader.Read()) { return Enums.StatusLogin.EmailInvalido; }
+                    if (!reader.Read()) { return Enums.StatusLogin.EmailInvalido; }
                 }
             }
 
@@ -57,7 +60,7 @@ namespace Carter.DAL
                 using (var reader = busca.ExecuteReader())
                 {
                     while (reader.Read())
-                        {
+                    {
                         var categoria = new Categoria
                         {
                             Id = Convert.ToInt32(reader["id_categoria"]),
@@ -67,7 +70,7 @@ namespace Carter.DAL
 
                         categorias.Add(categoria);
 
-                        }
+                    }
                     return categorias;
                 }
             }
@@ -152,6 +155,47 @@ namespace Carter.DAL
 
                 command.ExecuteNonQuery();
             }
+        }
+
+        public Usuario ObterDadosUsuarioPorId(int idUsuario)
+        {
+            Usuario usuario = new Usuario();
+            int idSalario = 0, idCategoria = 0, idPoupanca = 0;
+            string strsql = @"SELECT email
+	                                ,passwd_usuario
+	                                ,ISNULL(salario_atual,0) AS salario_atual
+	                                ,utiliza_poupanca
+	                                ,ISNULL(objetivo_valor_poupanca,0) AS objetivo_valor_poupanca
+	                                ,ISNULL(categoria_poupanca,0) AS categoria_poupanca
+                                FROM usuario
+                                WHERE id_usuario = @idUsuario";
+
+            using (var busca = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                busca.Parameters.AddWithValue("@idUsuario", idUsuario);
+                using (var reader = busca.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        usuario.Id = idUsuario;
+                        usuario.Email = reader["email"].ToString();
+                        usuario.Password = reader["passwd_usuario"].ToString();
+                        idSalario = Convert.ToInt32(reader["salario_atual"]);
+                        idCategoria = Convert.ToInt32(reader["categoria_poupanca"]);
+                        idPoupanca = Convert.ToInt32(reader["objetivo_valor_poupanca"]);
+                        usuario.UtilizaPoupanca = Convert.ToInt32(reader["utiliza_poupanca"]) == 1 ? true : false;
+                    }
+                }
+
+                if (idSalario > 0)
+                    usuario.SalarioAtual = _salarioDAL.ObterDadosSalarioPorId(idSalario);
+                if (idCategoria > 0)
+                    usuario.CategoriaPoupanca = _categoriaDAL.ObterDadosCategoriaPorId(idCategoria);
+                if (idPoupanca > 0)
+                    usuario.ObjetivoValorPoupanca = _poupancaDAL.ObterDadosPoupancaPorId(idPoupanca);
+            }
+
+            return usuario;
         }
     }
 }

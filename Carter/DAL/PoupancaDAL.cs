@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Carter.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -43,6 +44,37 @@ namespace Carter.DAL
 
             return 0;
 
+        }
+
+        public Poupanca ObterDadosPoupancaPorId(int idPoupanca)
+        {
+            string strsql = @"SELECT valor_objetivo
+	                                ,data_cadastro
+	                                ,data_limite_objetivo
+	                                ,data_valor_poupado
+	                                ,id_usuario
+                                FROM poupanca
+                                WHERE id_poupanca = @idPoupanca";
+
+            using (var busca = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                busca.Parameters.AddWithValue("@idPoupanca", idPoupanca);
+                using (var reader = busca.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Poupanca()
+                        {
+                            Id = idPoupanca,
+                            DataCadastro = Convert.ToDateTime(reader["data_cadastro"]),
+                            DataObjetivo = Convert.ToDateTime(reader["data_limite_objetivo"]),
+                            DataValorPoupado = reader["data_valor_poupado"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["data_valor_poupado"]),
+                            Valor = Convert.ToDecimal(reader["valor_objetivo"])
+                        };
+                    }
+                }
+            }
+            return new Poupanca();
         }
     }
 }
