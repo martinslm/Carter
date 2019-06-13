@@ -75,5 +75,35 @@ namespace Carter.DAL
 
             return new Salario();
         }
+
+        public IEnumerable<Salario> ObterHistoricoSalariosPorUsuario()
+        {
+            var salarios = new List<Salario>();
+            var strsql = @"SELECT id_salario
+	                            ,salario
+	                            ,data_cadastro
+                            FROM historico_salarios
+                            WHERE id_usuario = @idUsuario";
+
+            using (var busca = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                busca.Parameters.AddWithValue("@idUsuario", Sessao.Usuario.Id);
+                using (var reader = busca.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var salario = new Salario()
+                        {
+                            Id = Convert.ToInt32(reader["id_salario"]),
+                            DataCadastro = Convert.ToDateTime(reader["data_cadastro"]),
+                            Valor = Convert.ToDecimal(reader["salario"])
+                        };
+
+                        salarios.Add(salario);
+                    }
+                }
+                return salarios;
+            }
+        }
     }
 }

@@ -76,10 +76,12 @@
                     <materialDesign:PackIcon Kind="MoneyUsd" Width="30" Height="30" Foreground="#FFFAFA" VerticalAlignment="Center"/>
                     <TextBlock Text="Histórico de Salários"
                                VerticalAlignment="Center" 
-                               Margin="20 10" 
+                               Padding="5" 
                                Foreground="#FFFAFA"
                                FontSize="14"
-                               Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
+                               Style="{StaticResource MaterialDesignBody2TextBlock}">
+                          <Hyperlink TextDecorations="none" Command="{Binding HistoricoDeSalariosCommand}"></Hyperlink>
+                    </TextBlock>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Visibility="{Binding PoupancaVisibility }">
@@ -131,7 +133,7 @@
                 </StackPanel>
             </ListView>
             </Grid>
-        <Frame DockPanel.Dock="Left" x:Name="framePrincipal" NavigationUIVisibility="Hidden"
+        <Frame x:Name="framePrincipal" NavigationUIVisibility="Hidden"
 				   JournalOwnership="OwnsJournal" Grid.Row="1" Margin="60,10,10,10"/>
     </Grid>
 </Window>

@@ -17,6 +17,13 @@ namespace Carter.Telas
             _viewmodel = new PrincipalViewModel();
             InitializeComponent();
             DataContext = _viewmodel;
+            _viewmodel.AbrirTelaHistoricoSalarios = AbrirTelaHistoricoSalarios;
+            AbrirTelaHistoricoSalarios();
+        }
+
+        private void AbrirTelaHistoricoSalarios()
+        {
+            framePrincipal.Navigate(new HistoricoDeSalarios());
         }
 
         private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)

@@ -4,27 +4,50 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Carter.Telas"
+      xmlns:Formatadores="clr-namespace:Carter.Formatadores"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HistoricoDeSalarios">
-
+    <Page.Resources>
+        <ResourceDictionary>
+            <Formatadores:FormatadorDecimal x:Key="FormatadorDecimal"></Formatadores:FormatadorDecimal>
+            <Formatadores:FormatadorData x:Key="FormatadorData"></Formatadores:FormatadorData>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
-        <Grid Background="#FFFAFA">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-        </Grid>
-        <StackPanel Margin="4,0,0,5" x:Name="stackPanel4" Grid.Column="0" Grid.ColumnSpan="2">
-            <Border BorderBrush="#90EE90" BorderThickness="1" CornerRadius="1">
-                <WrapPanel x:Name="ListagemHistoricoSalarios">
-                    <Label Width="60" Content="Salário"/>
-                    <Label Width="90" Content="Data Cadastro"/>
-                </WrapPanel>
-            </Border>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="50">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <StackPanel 
+                        Name="StackPanelHeaderHistoricoSalarios" 
+                        VerticalAlignment="Top" 
+                        HorizontalAlignment="Center" 
+                        Orientation="Horizontal"
+                        Background="#3CB371">
+                        <Label Width="50" Content="Valor" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Width="100" Content="Data Cadastro" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <ListBox Name="ListBoxHistoricoDeSalarios" 
+                             ItemsSource="{Binding Salario}"
+                             BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#DCDCDC">
+                                    <TextBlock Width="50" Text="{Binding Valor, Converter={StaticResource FormatadorDecimal}}"/>
+                                    <TextBlock Width="100" Text="{Binding DataCadastro, Converter={StaticResource FormatadorData}}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50">
+            <Button>TESTE</Button>
         </StackPanel>
     </Grid>
 </Page>

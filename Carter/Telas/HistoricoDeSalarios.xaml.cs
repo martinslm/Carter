@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Carter.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace Carter.Telas
     /// </summary>
     public partial class HistoricoDeSalarios : Page
     {
+        private HistoricoDeSalariosViewModel _viewModel = new HistoricoDeSalariosViewModel();
         public HistoricoDeSalarios()
         {
             InitializeComponent();
+            DataContext = _viewModel;
+            ListBoxHistoricoDeSalarios.ItemsSource = _viewModel.Salarios;
         }
     }
 }
