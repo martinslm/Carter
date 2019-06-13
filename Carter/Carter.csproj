@@ -67,6 +67,8 @@
     <Compile Include="DAL\SalarioDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="Enums\StatusLogin.cs" />
+    <Compile Include="Formatadores\FormatadorData.cs" />
+    <Compile Include="Formatadores\FormatadorDecimal.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Models\Sessao.cs" />
     <Compile Include="Telas\App.xaml.cs">
@@ -86,7 +88,7 @@
       <DependentUpon>Principal.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CadastroUsuarioViewModel.cs" />
-    <Compile Include="ViewModels\CategoriaViewModel.cs" />
+    <Compile Include="ViewModels\HistoricoDeSalariosViewModel.cs"/>
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PrincipalViewModel.cs" />
   </ItemGroup>
