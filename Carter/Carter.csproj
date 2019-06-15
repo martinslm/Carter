@@ -68,6 +68,7 @@
     <Compile Include="DAL\ReceitaDAL.cs" />
     <Compile Include="DAL\SalarioDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
+    <Compile Include="Enums\PeriodoRelatorio.cs" />
     <Compile Include="Enums\StatusLogin.cs" />
     <Compile Include="Formatadores\FormatadorData.cs" />
     <Compile Include="Formatadores\FormatadorDecimal.cs" />
