@@ -31,6 +31,7 @@ namespace Carter.DAL
 
                 command.ExecuteNonQuery();
             }
+        }
 
         public Categoria ObterDadosCategoriaPorId(int idCategoria)
         {

@@ -2,7 +2,7 @@
 
 namespace Carter.Models
 {
-    class Recebimentos
+    class Receitas
     {
         public int Id { get; set; }
         public DateTime Data { get; set; }

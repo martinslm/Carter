@@ -76,6 +76,46 @@ namespace Carter.DAL
             return new Salario();
         }
 
+        internal void AtualizarSalarioAtualUsuario(int idSalario)
+        {
+            string strsql = @" UPDATE usuario
+                               SET salario_atual = @idSalario
+                               WHERE id_usuario = @idUsuario";
+
+            using (var command = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                command.Parameters.AddWithValue("@idUsuario", Sessao.Usuario.Id);
+                command.Parameters.AddWithValue("@idSalario", idSalario);
+
+                command.ExecuteNonQuery();
+            }
+
+            Sessao.Usuario.SalarioAtual = ObterDadosSalarioPorId(idSalario);
+        }
+
+        public int InserirSalarioPorUsuarioLogado(decimal novoSalario)
+        {
+            string strsql = @" INSERT INTO historico_salarios 
+                              (salario, data_cadastro, id_usuario)
+                              VALUES(@novoSalario, GETDATE(), @idUsuario);
+
+                            SELECT IDENT_CURRENT('historico_salarios') AS id_salario";
+
+            using (var busca = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                busca.Parameters.AddWithValue("@novoSalario", novoSalario);
+                busca.Parameters.AddWithValue("@idUsuario", Sessao.Usuario.Id);
+
+                using (var reader = busca.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return Convert.ToInt32(reader["id_salario"]);
+                    }
+                }
+            }
+            return 0;
+        }
         public IEnumerable<Salario> ObterHistoricoSalariosPorUsuario()
         {
             var salarios = new List<Salario>();

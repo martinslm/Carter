@@ -11,48 +11,5 @@
 
     <Grid>
 
-        <Grid Background="White" Margin="178,0,130,8">
-            <StackPanel Grid.Row="1" Margin="5" HorizontalAlignment="Center">
-                <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" 
-                    FontWeight="DemiBold" 
-                    Foreground="#3CB371"
-                    Padding="10"
-                       ><Run Text="Cadastro de Categoria"/></TextBlock>
-                <StackPanel Margin="10,5">
-                    <TextBlock Text="Selecione as categorias"/>
-                    <CheckBox IsThreeState="True" x:Name="cbAllFeatures" Checked="cbAllFeatures_CheckedChanged" Unchecked="cbAllFeatures_CheckedChanged" Content="Todas as categorias"/>
-                    <StackPanel Margin="20,5">
-                        <CheckBox x:Name="cbFeatureAbc" Checked="cbFeature_CheckedChanged" Unchecked="cbFeature_CheckedChanged" Content="Meranh"/>
-                        <CheckBox x:Name="cbFeatureXyz" IsChecked="True" Checked="cbFeature_CheckedChanged" Unchecked="cbFeature_CheckedChanged" Content="Mehran"/>
-                        <CheckBox x:Name="cbFeatureWww" Checked="cbFeature_CheckedChanged" Unchecked="cbFeature_CheckedChanged" Content="Mehranzinho"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" 
-                    HorizontalAlignment="Right">
-                    <TextBox materialDesign:HintAssist.Hint="Descrição da categoria" 
-                        Width="150"
-                        x:Name="Email"
-                        Margin="0,0,0,0"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Descricao}" TextChanged="Descricao_TextChanged"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center"/>
-                <StackPanel Orientation="Horizontal" />
-                <StackPanel Visibility="{Binding CategoriaVisibility}" Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal"/>
-                    <StackPanel Orientation="Horizontal"/>
-                    <StackPanel Orientation="Horizontal"/>
-                    <StackPanel Orientation="Horizontal" Margin="20">
-                        <Button Margin="300,0,0,0" Padding="5" Width="100" Command="{Binding CadastrarCommand}" Content="Cadastrar"/>
-                    </StackPanel>
-                    <Label Foreground="DarkRed" TextBlock.FontSize="10"  Padding="10" HorizontalAlignment="Right" FontWeight="Bold" Content="{Binding TextAvisoCadastro}"/>
-                    <StackPanel Orientation="Horizontal" Margin="20">
-                        <Button Margin="40,0,50,0" Padding="5" Width="100" Command="{Binding ExcluirCommand}" Content="Salvar" RenderTransformOrigin="-0.35,0.516"/>
-                    </StackPanel>
-                </StackPanel>
-
-            </StackPanel>
-        </Grid>
-
     </Grid>
 </Page>

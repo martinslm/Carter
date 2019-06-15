@@ -96,7 +96,7 @@
 
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="BankTransfer" Width="30" Height="30" Foreground="#FFFAFA" VerticalAlignment="Center"/>
-                    <TextBlock Text="Contas e Receitas"
+                    <TextBlock Text="Receitas e Despesas"
                                VerticalAlignment="Center" 
                                Margin="20 10" 
                                Foreground="#FFFAFA" 

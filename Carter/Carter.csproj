@@ -63,7 +63,9 @@
     </ApplicationDefinition>
     <Compile Include="BindableObject.cs" />
     <Compile Include="DAL\CategoriaDAL.cs" />
+    <Compile Include="DAL\DespesaDAL.cs" />
     <Compile Include="DAL\PoupancaDAL.cs" />
+    <Compile Include="DAL\ReceitaDAL.cs" />
     <Compile Include="DAL\SalarioDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="Enums\StatusLogin.cs" />
@@ -81,16 +83,21 @@
     </Compile>
     <Compile Include="Telas\Categoria.xaml.cs">
       <DependentUpon>Categoria.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\HistoricoDeSalarios.xaml.cs">
       <DependentUpon>HistoricoDeSalarios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\Principal.xaml.cs">
       <DependentUpon>Principal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Telas\ReceitaseDespesas.xaml.cs">
+      <DependentUpon>ReceitaseDespesas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\CadastroUsuarioViewModel.cs" />
-    <Compile Include="ViewModels\HistoricoDeSalariosViewModel.cs"/>
+    <Compile Include="ViewModels\HistoricoDeSalariosViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PrincipalViewModel.cs" />
+    <Compile Include="ViewModels\ReceitaseDespesasViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexao.cs" />
@@ -101,7 +108,7 @@
     <Compile Include="Models\Despesas.cs" />
     <Compile Include="Models\MovimentoPoupanca.cs" />
     <Compile Include="Models\Poupanca.cs" />
-    <Compile Include="Models\Recebimentos.cs" />
+    <Compile Include="Models\Receitas.cs" />
     <Compile Include="Models\Salario.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -140,6 +147,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\Categoria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Telas\HistoricoDeSalarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -149,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\Principal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\ReceitaseDespesas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
