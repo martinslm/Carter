@@ -45,7 +45,7 @@ namespace Carter.DAL
             return Enums.StatusLogin.Sucesso;
         }
 
-        internal List<Categoria> BuscarCategorias()
+        public List<Categoria> BuscarCategorias()
         {
             var categorias = new List<Categoria>();
             string strsql = @"SELECT 

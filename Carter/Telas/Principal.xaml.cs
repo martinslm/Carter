@@ -17,8 +17,8 @@ namespace Carter.Telas
             _viewmodel = new PrincipalViewModel();
             InitializeComponent();
             DataContext = _viewmodel;
-            _viewmodel.AbrirTelaHistoricoSalarios = AbrirTelaHistoricoSalarios;
-            AbrirTelaReceitasEDespesas();
+            _viewmodel.AbrirCategorias = AbrirTelaCategoria; 
+            AbrirTelaCategoria();
         }
 
         private void AbrirTelaHistoricoSalarios()
@@ -29,6 +29,10 @@ namespace Carter.Telas
         private void AbrirTelaReceitasEDespesas()
         {
             framePrincipal.Navigate(new ReceitaseDespesas());
+        }
+        private void AbrirTelaCategoria()
+        {
+            framePrincipal.Navigate(new CadastrarCategoria());
         }
 
         private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
@@ -41,6 +45,10 @@ namespace Carter.Telas
         {
             ButtonOpenMenu.Visibility = Visibility.Collapsed;
             ButtonCloseMenu.Visibility = Visibility.Visible;
+        }
+        private void Fechartela(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

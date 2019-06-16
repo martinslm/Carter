@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Carter"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="2000"
+      d:DesignHeight="800" d:DesignWidth="800"
       WindowStartupLocation="CenterScreen" 
       ResizeMode="NoResize"
       WindowStyle="None" 
@@ -36,6 +36,7 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid Background="#FFFAFA">
+        
         <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -135,5 +136,17 @@
             </Grid>
         <Frame x:Name="framePrincipal" NavigationUIVisibility="Hidden"
 				   JournalOwnership="OwnsJournal" Grid.Row="1" Margin="60,10,10,10"/>
+        <StackPanel HorizontalAlignment="Right">
+        <Label RenderTransformOrigin="-0.057,1.086" 
+                       MouseDown="Fechartela">
+            <materialDesign:PackIcon 
+                    Kind="Close" 
+                    Foreground="#3CB371"
+                    Width="25"
+                    Height="25"
+                    Padding="5" RenderTransformOrigin="-0.4,3.08"
+                />
+        </Label>
+        </StackPanel>
     </Grid>
 </Window>

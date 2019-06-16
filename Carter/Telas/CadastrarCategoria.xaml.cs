@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Carter.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,14 @@ namespace Carter.Telas
     /// <summary>
     /// Interação lógica para Categoria.xam
     /// </summary>
-    public partial class Categoria : Page
+    public partial class CadastrarCategoria : Page
     {
-        public Categoria()
+        private CadastrarCategoriaViewModel _viewModel = new CadastrarCategoriaViewModel();
+        public CadastrarCategoria()
         {
             InitializeComponent();
+            DataContext = _viewModel;
+            ListBoxCategorias.ItemsSource = _viewModel.Categoria;
         }
 
     }

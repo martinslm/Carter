@@ -9,19 +9,23 @@ using System.Windows.Input;
 
 namespace Carter.ViewModels
 {
-    public class CategoriaViewModel : BindableObject
+    public class CadastrarCategoriaViewModel : BindableObject
     {
 
         private string _descricao;
         private bool _habilitado;
         private CategoriaDAL _categoriaDAL = new CategoriaDAL();
         private UsuarioDAL _usuarioDAL = new UsuarioDAL();
+        private IEnumerable<Categoria> _categoria;
         private ICommand _cadastrarCommand;
         private ICommand _cancelarCommand;
         private ICommand _excluirCommand;
         public Action<bool> FecharTela { get; set; }
 
-
+       /* public IEnumerable<Categoria> Categorias
+        {
+            get { return _categorias; }
+        }*/
         public string Descricao
         {
             get
@@ -33,11 +37,11 @@ namespace Carter.ViewModels
                 Descricao = value;
             }
         }
-        public List<Categoria> Categoria
+        public IEnumerable<Categoria> Categoria
         {
             get
             {
-                return _usuarioDAL.BuscarCategorias();
+                return _categoria;
             }
         }
         public ICommand CadastrarCommand
@@ -51,6 +55,12 @@ namespace Carter.ViewModels
         public ICommand ExcluirCommand
         {
             get { return _excluirCommand; }
+        }
+
+        public CadastrarCategoriaViewModel()
+        {
+            //InstanciarCommands();
+            _categoria = _usuarioDAL.BuscarCategorias();
         }
         private void InstanciarCommands()
         {
@@ -75,7 +85,7 @@ namespace Carter.ViewModels
                 {
                     //int idCategoria = 0;
                     var descricao = _descricao;
-                   // _categoriaDAL.CadastrarCategoria(Descricao);
+                    // _categoriaDAL.CadastrarCategoria(Descricao);
 
                     FecharTela(true);
                 }
@@ -96,13 +106,15 @@ namespace Carter.ViewModels
         }
         private bool ValidarDados()
         {
-            
+
             return true;
 
         }
-        public CadtegoriaViewModel()
+        private void AtualizarListagemCategorias()
         {
-            InstanciarCommands();
+            //_categorias = _categoriaDAL.ObterDadosCategoriaPorId();
+            //erro ao atualizar listagem - VER DEPOIS
+            //RaisePropertyChanged();
         }
     }
 }
