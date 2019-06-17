@@ -17,7 +17,7 @@ namespace Carter.Telas
             _viewmodel = new PrincipalViewModel();
             InitializeComponent();
             DataContext = _viewmodel;
-            _viewmodel.AbrirCategorias = AbrirTelaCategoria; 
+            _viewmodel.AbrirCategorias = AbrirTelaCategoria;
             AbrirTelaCategoria();
         }
 

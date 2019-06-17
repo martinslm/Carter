@@ -2,9 +2,6 @@
 using Carter.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Carter.ViewModels
@@ -26,17 +23,6 @@ namespace Carter.ViewModels
         {
             get { return _categorias; }
         }*/
-        public string Descricao
-        {
-            get
-            {
-                return Descricao;
-            }
-            set
-            {
-                Descricao = value;
-            }
-        }
         public IEnumerable<Categoria> Categoria
         {
             get
@@ -99,8 +85,6 @@ namespace Carter.ViewModels
         private bool PodeCadastrar()
         {
             CadastrarCategoria();
-            if (Descricao == null)
-                return false;
 
             return true;
         }
