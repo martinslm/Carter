@@ -82,8 +82,7 @@ namespace Carter.ViewModels
         private void AtualizarListagemSalarios()
         {
             _salarios = _salarioDAL.ObterHistoricoSalariosPorUsuario();
-            //erro ao atualizar listagem - VER DEPOIS
-            //RaisePropertyChanged();
+            RaisePropertyChanged("Salarios");
         }
     }
 }

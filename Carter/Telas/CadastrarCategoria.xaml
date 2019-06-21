@@ -40,7 +40,6 @@
             <StackPanel Orientation="Vertical">
                 <Label Padding="10" VerticalAlignment="Center">Deseja cadastrar uma nova categoria?</Label>
                 <StackPanel Orientation="Horizontal">
-
                     <TextBox materialDesign:HintAssist.Hint="Categoria" 
                          Width="150"
                          x:Name="Descricao"

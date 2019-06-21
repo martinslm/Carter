@@ -18,15 +18,26 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="150"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="600"/>
+            <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,84,0,85" Width="500">
+        
+        <StackPanel Margin="100,30,30,30" Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+            <Label Margin="100,0,0,0" VerticalAlignment="Center">Filtrar por:</Label>
+            <Button Margin="10" Width="100" Height="30" Command="{Binding BotaoMesAtualCommand}" >Mês Atual</Button>
+            <Button Margin="10"  Width="150" Height="30" Command="{Binding BotaoSeisMesesCommand}" >Últimos 6 meses</Button>
+        </StackPanel>
+        
+        <StackPanel Margin="100,30,30,30" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+            <Button Margin="10" Width="150" Height="30" Command="{Binding CadastrarLancamentoCommand}" >Novo Lançamento</Button>
+            <Button Margin="10" Width="150" Height="30" Command="{Binding InserirSalarioCommand}" >Inserir Salário</Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,0,0" Width="450">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <TextBlock x:Name="Receitas"
@@ -42,23 +53,67 @@
                         HorizontalAlignment="Center" 
                         Orientation="Horizontal"
                         Background="#3CB371"
-                        Width="450"
-                        Margin="80">
+                        Width="450">
                         <Label Width="50" Content="Valor" Foreground="White" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
                         <Label Width="100" Content="Data" Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
                         <Label Width="150" Content="Descrição" Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
                         <Label Width="100" Content="Categoria" Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
                     </StackPanel>
-                    <ListBox Name="ListBoxHistoricoDeSalarios" 
+                    <ListBox Name="ListBoxReceitas" 
                              ItemsSource="{Binding Receitas}"
                              BorderThickness="0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock Width="50" HorizontalAlignment="Center" Text="{Binding Valor, Converter={StaticResource FormatadorDecimal}}"/>
-                                    <TextBlock Width="100" HorizontalAlignment="Center" Text="{Binding DataCadastro, Converter={StaticResource FormatadorData}}"/>
+                                    <TextBlock Width="100" HorizontalAlignment="Center" Text="{Binding Data, Converter={StaticResource FormatadorData}}"/>
+                                    <TextBlock Width="150" HorizontalAlignment="Center" Text="{Binding Descricao}"/>
+                                    <TextBlock Width="100" HorizontalAlignment="Center" Text="{Binding Categoria.Descricao}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,20,0,0" Width="500">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <TextBlock x:Name="Despesas"
+                        Foreground="DarkRed"
+                        Height="21"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource MaterialDesignBody2TextBlock}">
+                        Despesas
+                    </TextBlock>
+                    <StackPanel 
+                        Name="StackPanelHeaderDespesas" 
+                        VerticalAlignment="Top" 
+                        HorizontalAlignment="Center" 
+                        Orientation="Horizontal"
+                        Background="DarkRed"
+                        Width="500">
+                        <Label Width="50" Content="Valor" Foreground="White" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Width="100" Content="Data Venc." Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Width="55" Content="Parcela" Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Width="100" Content="Descrição" Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Width="100" Content="Categoria" Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Width="50" Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+
+                    </StackPanel>
+                    <ListBox Name="ListBoxDespesas" 
+                             ItemsSource="{Binding Despesas}"
+                             BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Width="50" HorizontalAlignment="Center" Text="{Binding Valor, Converter={StaticResource FormatadorDecimal}}"/>
+                                    <TextBlock Width="100" HorizontalAlignment="Center" Text="{Binding DataVencimento, Converter={StaticResource FormatadorData}}"/>
+                                    <TextBlock Width="55" HorizontalAlignment="Center" Text="{Binding ResumoParcela}"/>
                                     <TextBlock Width="100" HorizontalAlignment="Center" Text="{Binding Descricao}"/>
-                                    <TextBlock Width="100" HorizontalAlignment="Center" Text="{Binding Categoria}"/>
+                                    <TextBlock Width="100" HorizontalAlignment="Center" Text="{Binding Categoria.Descricao}"/>
+                                    <Button Width="50" IsEnabled="{Binding MostrarBotaoPagarEnabled}" FontSize="8">Pagar Fatura</Button>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

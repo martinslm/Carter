@@ -17,12 +17,12 @@ using System.Windows.Shapes;
 namespace Carter.Telas
 {
     /// <summary>
-    /// Interação lógica para HistoricoDeSalarios.xam
+    /// Interação lógica para CadastrarReceitasDespesas.xam
     /// </summary>
-    public partial class HistoricoDeSalarios : Page
+    public partial class CadastrarReceitasDespesas : Window
     {
-        private HistoricoDeSalariosViewModel _viewModel = new HistoricoDeSalariosViewModel();
-        public HistoricoDeSalarios()
+        private CadastrarReceitaDespesaViewModel _viewModel = new CadastrarReceitaDespesaViewModel();
+        public CadastrarReceitasDespesas()
         {
             InitializeComponent();
             DataContext = _viewModel;

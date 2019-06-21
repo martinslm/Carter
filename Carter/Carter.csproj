@@ -70,6 +70,7 @@
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="Enums\PeriodoRelatorio.cs" />
     <Compile Include="Enums\StatusLogin.cs" />
+    <Compile Include="Enums\TipoLancamento.cs" />
     <Compile Include="Formatadores\FormatadorData.cs" />
     <Compile Include="Formatadores\FormatadorDecimal.cs" />
     <Compile Include="Log.cs" />
@@ -79,6 +80,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CommandHandler.cs" />
+    <Compile Include="Telas\CadastrarReceitasDespesas.xaml.cs">
+      <DependentUpon>CadastrarReceitasDespesas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\CadastroUsuario.xaml.cs">
       <DependentUpon>CadastroUsuario.xaml</DependentUpon>
     </Compile>
@@ -95,6 +99,7 @@
       <DependentUpon>ReceitaseDespesas.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CadastrarCategoriaViewModel.cs" />
+    <Compile Include="ViewModels\CadastrarReceitaDespesaViewModel.cs" />
     <Compile Include="ViewModels\CadastroUsuarioViewModel.cs" />
     <Compile Include="ViewModels\HistoricoDeSalariosViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -141,6 +146,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\CadastrarReceitasDespesas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
