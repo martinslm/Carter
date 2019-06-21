@@ -124,8 +124,16 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="PowerStandby" Width="30" Height="30" Foreground="#FFFAFA" VerticalAlignment="Center"/>
-                    <TextBlock Text="Logout"
+                    <Label RenderTransformOrigin="-0.057,1.086" 
+                       MouseDown="Fechartela">
+                        <materialDesign:PackIcon 
+                            Kind="PowerStandby" 
+                            Width="30" 
+                            Height="30" 
+                            Foreground="#FFFAFA" 
+                            VerticalAlignment="Center"/>
+                     </Label>
+                        <TextBlock Text="Logout"
                                VerticalAlignment="Center" 
                                Margin="20 10" 
                                Foreground="#FFFAFA" 

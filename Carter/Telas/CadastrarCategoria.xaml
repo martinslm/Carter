@@ -10,7 +10,11 @@
       Title="CadastrarCategoria">
 
     <Grid>
-        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <StackPanel 
@@ -19,8 +23,7 @@
                         HorizontalAlignment="Center" 
                         Orientation="Horizontal"
                         Background="#3CB371">
-                        <Label Width="50" Content="Id" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <Label Width="115" Content="Descrição categoria" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Width="150" Content="Descrição categoria" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </StackPanel>
                     <ListBox Name="ListBoxCategorias" 
                              ItemsSource="{Binding Categoria}"
@@ -36,7 +39,7 @@
                 </StackPanel>
             </ScrollViewer>
         </StackPanel>
-        <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="50">
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50">
             <StackPanel Orientation="Vertical">
                 <Label Padding="10" VerticalAlignment="Center">Deseja cadastrar uma nova categoria?</Label>
                 <StackPanel Orientation="Horizontal">

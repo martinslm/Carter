@@ -27,7 +27,7 @@ namespace Carter.DAL
             using (var command = new SqlCommand(strsql, Conexao.Conectar()))
             {
                 command.Parameters.AddWithValue("@descricao", descricao);
-                command.Parameters.AddWithValue("@utilizaPoupanca", habilitado == true ? 1 : 0);
+                command.Parameters.AddWithValue("@habilitado", habilitado == true ? 1 : 0);
 
                 command.ExecuteNonQuery();
             }
@@ -59,6 +59,21 @@ namespace Carter.DAL
 
             return new Categoria();
 
+        }
+
+        public void VincularIdUsuarioAcategoria(int idCategoria, int idUsuario)
+        {
+            string strsql = @" UPDATE categoria 
+                               SET id_usuario = @idUsuario
+                               WHERE id_categoria = @idCategoria";
+
+            using (var command = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                command.Parameters.AddWithValue("@idCategoria", idCategoria);
+
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
