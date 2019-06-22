@@ -19,10 +19,22 @@ namespace Carter.ViewModels
         private ICommand _excluirCommand;
         public Action<bool> FecharTela { get; set; }
 
-       /* public IEnumerable<Categoria> Categorias
+        /* public IEnumerable<Categoria> Categorias
+         {
+             get { return _categorias; }
+         }*/
+        public string Descricao
         {
-            get { return _categorias; }
-        }*/
+            get
+            {
+                return _descricao;
+            }
+            set
+            {
+                _descricao = value;
+                RaisePropertyChanged();
+            }
+        }
         public IEnumerable<Categoria> Categoria
         {
             get
@@ -45,7 +57,7 @@ namespace Carter.ViewModels
 
         public CadastrarCategoriaViewModel()
         {
-            //InstanciarCommands();
+            InstanciarCommands();
             _categoria = _usuarioDAL.BuscarCategorias();
         }
         private void InstanciarCommands()
@@ -69,11 +81,11 @@ namespace Carter.ViewModels
             {
                 try
                 {
-                    //int idCategoria = 0;
-                    var descricao = _descricao;
-                    // _categoriaDAL.CadastrarCategoria(Descricao);
-
-                    FecharTela(true);
+                    /*int idCategoria = 0;
+                    string descricao = _descricao;
+                    _categoriaDAL.CadastrarCategorias(Descricao,Habilitado);
+                    var idUsuario = _categoriaDAL.ObterDadosCategoriaPorId(Descricao);
+                    _categoriaDAL.VincularIdUsuarioAcategoria(idDescricao, idUsuario);*/
                 }
                 catch (Exception Ex)
                 {
@@ -84,7 +96,8 @@ namespace Carter.ViewModels
         }
         private bool PodeCadastrar()
         {
-            CadastrarCategoria();
+            if (Descricao == null)
+                return false;
 
             return true;
         }
