@@ -36,7 +36,7 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid Background="#FFFAFA">
-        
+
         <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -53,7 +53,7 @@
                 </Button>
             </Grid>
             <ListView Margin="0,150,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <ListViewItem Width="60"></ListViewItem>
+                <ListViewItem Width="60"></ListViewItem>
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="AccountBox" Width="30" Height="30" Foreground="#FFFAFA" VerticalAlignment="Center"/>
                     <TextBlock Text="Minha Conta"
@@ -124,7 +124,15 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="PowerStandby" Width="30" Height="30" Foreground="#FFFAFA" VerticalAlignment="Center"/>
+                    <Label RenderTransformOrigin="-0.057,1.086" 
+                       MouseDown="Fechartela">
+                        <materialDesign:PackIcon 
+                            Kind="PowerStandby" 
+                            Width="30" 
+                            Height="30" 
+                            Foreground="#FFFAFA" 
+                            VerticalAlignment="Center"/>
+                    </Label>
                     <TextBlock Text="Logout"
                                VerticalAlignment="Center" 
                                Margin="20 10" 
@@ -133,20 +141,20 @@
                                Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
                 </StackPanel>
             </ListView>
-            </Grid>
+        </Grid>
         <Frame x:Name="framePrincipal" NavigationUIVisibility="Hidden"
 				   JournalOwnership="OwnsJournal" Grid.Row="1" Margin="60,10,10,10"/>
         <StackPanel HorizontalAlignment="Right">
-        <Label RenderTransformOrigin="-0.057,1.086" 
+            <Label RenderTransformOrigin="-0.057,1.086" 
                        MouseDown="Fechartela">
-            <materialDesign:PackIcon 
+                <materialDesign:PackIcon 
                     Kind="Close" 
                     Foreground="#3CB371"
                     Width="25"
                     Height="25"
                     Padding="5" RenderTransformOrigin="-0.4,3.08"
                 />
-        </Label>
+            </Label>
         </StackPanel>
     </Grid>
 </Window>
