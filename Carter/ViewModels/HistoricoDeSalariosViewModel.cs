@@ -42,6 +42,7 @@ namespace Carter.ViewModels
         public HistoricoDeSalariosViewModel()
         {
             _salarios = _salarioDAL.ObterHistoricoSalariosPorUsuario();
+            RaisePropertyChanged("Salarios");
             InstanciarCommands();
         }
 

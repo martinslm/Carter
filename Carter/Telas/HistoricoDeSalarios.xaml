@@ -33,7 +33,7 @@
                         <Label Width="100" Content="Data Cadastro" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </StackPanel>
                     <ListBox Name="ListBoxHistoricoDeSalarios" 
-                             ItemsSource="{Binding Salario}"
+                             ItemsSource="{Binding Salarios}"
                              BorderThickness="0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>

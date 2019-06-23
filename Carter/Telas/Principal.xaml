@@ -62,7 +62,7 @@
                                FontSize="14"
                                Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" MouseDown="Categoria">
                     <materialDesign:PackIcon Kind="Category" Width="30" Height="30" Foreground="#FFFAFA" VerticalAlignment="Center"/>
                     <TextBlock Text="Categoria"
                                VerticalAlignment="Center" 
@@ -72,7 +72,7 @@
                                Style="{StaticResource MaterialDesignBody2TextBlock}">
                     </TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" MouseDown="HistoricoDeSalarios">
                     <materialDesign:PackIcon Kind="MoneyUsd" Width="30" Height="30" Foreground="#FFFAFA" VerticalAlignment="Center"/>
                     <TextBlock Text="Histórico de Salários"
                                VerticalAlignment="Center" 
@@ -94,7 +94,7 @@
                                Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" MouseDown="ReceitasDespesas">
                     <materialDesign:PackIcon Kind="BankTransfer" Width="30" Height="30" Foreground="#FFFAFA" VerticalAlignment="Center"/>
                     <TextBlock Text="Receitas e Despesas"
                                VerticalAlignment="Center" 
