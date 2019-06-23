@@ -8,7 +8,7 @@ namespace Carter.Enums
 {
     public enum TipoLancamento
     {
-        Entrada,
-        Saida
+        Receita,
+        Despesa
     }
 }

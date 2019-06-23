@@ -20,6 +20,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
             <RowDefinition/>
+            <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -31,10 +32,8 @@
             <Button Margin="10" Width="100" Height="30" Command="{Binding BotaoMesAtualCommand}" >Mês Atual</Button>
             <Button Margin="10"  Width="150" Height="30" Command="{Binding BotaoSeisMesesCommand}" >Últimos 6 meses</Button>
         </StackPanel>
-        
+
         <StackPanel Margin="100,30,30,30" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
-            <Button Margin="10" Width="150" Height="30" Command="{Binding CadastrarLancamentoCommand}" >Novo Lançamento</Button>
-            <Button Margin="10" Width="150" Height="30" Command="{Binding InserirSalarioCommand}" >Inserir Salário</Button>
         </StackPanel>
         
         <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,0,0" Width="450">
@@ -61,7 +60,8 @@
                     </StackPanel>
                     <ListBox Name="ListBoxReceitas" 
                              ItemsSource="{Binding Receitas}"
-                             BorderThickness="0">
+                             BorderThickness="0"
+                             Height="350">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -99,12 +99,13 @@
                         <Label Width="55" Content="Parcela" Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
                         <Label Width="100" Content="Descrição" Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
                         <Label Width="100" Content="Categoria" Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
-                        <Label Width="50" Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Width="60" Content="Situação" Foreground="White"  HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
 
                     </StackPanel>
                     <ListBox Name="ListBoxDespesas" 
                              ItemsSource="{Binding Despesas}"
-                             BorderThickness="0">
+                             BorderThickness="0"
+                             Height="350">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -113,13 +114,26 @@
                                     <TextBlock Width="55" HorizontalAlignment="Center" Text="{Binding ResumoParcela}"/>
                                     <TextBlock Width="100" HorizontalAlignment="Center" Text="{Binding Descricao}"/>
                                     <TextBlock Width="100" HorizontalAlignment="Center" Text="{Binding Categoria.Descricao}"/>
-                                    <Button Width="50" IsEnabled="{Binding MostrarBotaoPagarEnabled}" FontSize="8">Pagar Fatura</Button>
+                                    <Label Width="60" HorizontalContentAlignment="Center" Foreground="{Binding CorSituacao}" FontWeight="DemiBold" Content="{Binding SituacaoDespesa}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </StackPanel>
             </ScrollViewer>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="10" Width="150" Height="30" Command="{Binding CadastrarLancamentoCommand}" >Novo Lançamento</Button>
+            <Button Margin="10" Width="150" Height="30" Command="{Binding InserirSalarioCommand}" >Inserir Salário</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <Button Margin="10">Marcar como Pago</Button>
+            <Label FontSize="30"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Center" 
+                   Content="{Binding ValorTotal}"
+                   Foreground="{Binding ValorTotalColor}"
+                   FontWeight="DemiBold"></Label>
         </StackPanel>
     </Grid>
 </Page>

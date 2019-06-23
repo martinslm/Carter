@@ -1,18 +1,6 @@
-﻿using Carter.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Carter.Enums;
+using Carter.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Carter.Telas
 {
@@ -21,11 +9,19 @@ namespace Carter.Telas
     /// </summary>
     public partial class CadastrarReceitasDespesas : Window
     {
-        private CadastrarReceitaDespesaViewModel _viewModel = new CadastrarReceitaDespesaViewModel();
+        private readonly CadastrarReceitaDespesaViewModel _viewmodel;
+
         public CadastrarReceitasDespesas()
         {
+            _viewmodel = new CadastrarReceitaDespesaViewModel();
             InitializeComponent();
-            DataContext = _viewModel;
+            DataContext = _viewmodel;
+            _viewmodel.FecharTela = FecharTela;
+        }
+
+        private void FecharTela(bool dialogResult)
+        {
+            DialogResult = dialogResult;
         }
     }
 }

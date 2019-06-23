@@ -61,6 +61,44 @@ namespace Carter.DAL
 
         }
 
+        public List<Categoria> ObterCategoriasPorUsuarioLogado()
+        {
+            List<Categoria> categorias = new List<Categoria>();
+
+            string strsql = @"SELECT id_categoria
+	                                ,descricao
+	                                ,habilitado
+                                FROM categoria
+                                WHERE habilitado = 1
+	                                AND (
+		                                id_usuario IS NULL
+		                                OR id_usuario = @idUsuario
+		                                )";
+
+            if (Sessao.Usuario.UtilizaPoupanca && Sessao.Usuario.CategoriaPoupanca != null)
+                strsql += string.Format("AND id_categoria <> {0}", Sessao.Usuario.CategoriaPoupanca.Id);
+
+            using (var busca = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                busca.Parameters.AddWithValue("@idUsuario", Sessao.Usuario.Id);
+
+                using (var reader = busca.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var categoria = new Categoria()
+                        {
+                            Id = Convert.ToInt32(reader["id_categoria"]),
+                            Habilitado = Convert.ToInt32(reader["habilitado"]) == 1 ? true : false,
+                            Descricao = reader["descricao"].ToString()
+                        };
+                        categorias.Add(categoria);
+                    }
+                }
+
+                return categorias;
+            }
+        }
         public void VincularIdUsuarioAcategoria(int idCategoria, int idUsuario)
         {
             string strsql = @" UPDATE categoria 

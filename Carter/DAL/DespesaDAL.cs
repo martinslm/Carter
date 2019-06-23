@@ -76,5 +76,54 @@ namespace Carter.DAL
                 return despesas;
             }
         }
+
+        public void CadastrarNovaDespesa(Despesas novaDespesa)
+        {
+            var strsql = @"INSERT INTO despesas (
+	                                    valor
+	                                    ,data_vencimento
+	                                    ,categoria_despesa
+	                                    ,parcela_atual
+	                                    ,total_parcelas
+	                                    ,valor_pago
+	                                    ,id_usuario
+	                                    ,descricao
+	                                    )
+                                    VALUES (
+	                                    @valor
+	                                    ,@data
+	                                    ,@categoria
+	                                    ,@parcelaAtual
+	                                    ,@parcelaTotal
+	                                    ,@pago
+	                                    ,@idUsuario
+	                                    ,@descricao
+	                                    )";
+
+            using (var command = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                while (novaDespesa.ParcelaAtual <= novaDespesa.TotalParcelas)
+                {
+                    command.Parameters.AddWithValue("@idUsuario", Sessao.Usuario.Id);
+                    command.Parameters.AddWithValue("@data", novaDespesa.DataVencimento);
+                    command.Parameters.AddWithValue("@valor", novaDespesa.Valor);
+                    command.Parameters.AddWithValue("@categoria", novaDespesa.Categoria.Id);
+                    command.Parameters.AddWithValue("@descricao", novaDespesa.Descricao);
+                    command.Parameters.AddWithValue("parcelaAtual", novaDespesa.ParcelaAtual);
+                    command.Parameters.AddWithValue("@parcelaTotal", novaDespesa.TotalParcelas);
+                    command.Parameters.AddWithValue("@pago", novaDespesa.Pago == true ? 1 : 0);
+
+                    command.ExecuteNonQuery();
+
+                    command.Parameters.Clear();
+
+                    novaDespesa.DataVencimento = novaDespesa.DataVencimento.AddMonths(1);
+                    if (novaDespesa.DataVencimento.Month > DateTime.Now.Month && novaDespesa.Pago == true)
+                        novaDespesa.Pago = false;
+                    novaDespesa.ParcelaAtual += 1;
+                }
+            }
+
+        }
     }
 }

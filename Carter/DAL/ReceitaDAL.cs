@@ -98,5 +98,34 @@ namespace Carter.DAL
                 command.ExecuteNonQuery();
             }
         }
+
+        public void CadastrarNovaReceita(Receitas novaReceita)
+        {
+            var strsql = @"INSERT INTO recebimentos (
+	                                data_recebimento
+	                                ,valor
+	                                ,id_categoria
+	                                ,descricao
+	                                ,id_usuario
+	                                )
+                                VALUES (
+	                                @data
+	                                ,@valor
+	                                ,@categoria
+	                                ,@descricao
+	                                ,@idUsuario
+	                                )";
+
+            using (var command = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                command.Parameters.AddWithValue("@idUsuario", Sessao.Usuario.Id);
+                command.Parameters.AddWithValue("@data", novaReceita.Data);
+                command.Parameters.AddWithValue("@valor", novaReceita.Valor);
+                command.Parameters.AddWithValue("@categoria", novaReceita.Categoria.Id);
+                command.Parameters.AddWithValue("@descricao", novaReceita.Descricao);
+                command.ExecuteNonQuery();
+            }
+
+        }
     }
 }
