@@ -103,7 +103,7 @@
                                FontSize="14"
                                Style="{StaticResource MaterialDesignBody2TextBlock}"></TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" MouseDown="Estatisticas">
                     <materialDesign:PackIcon Kind="TrendingUp" Width="30" Height="30" Foreground="#FFFAFA" VerticalAlignment="Center"/>
                     <TextBlock Text="Estatisticas"
                                VerticalAlignment="Center" 

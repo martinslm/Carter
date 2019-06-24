@@ -17,6 +17,7 @@ namespace Carter.Telas
             _viewmodel = new PrincipalViewModel();
             InitializeComponent();
             DataContext = _viewmodel;
+            AbrirTelaEstatistica();
         }
 
         private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
@@ -48,6 +49,16 @@ namespace Carter.Telas
         private void Categoria(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             framePrincipal.Navigate(new CadastrarCategoria());
+        }
+
+        private void Estatisticas(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            AbrirTelaEstatistica();
+        }
+
+        private void AbrirTelaEstatistica()
+        {
+            framePrincipal.Navigate(new Estatisticas());
         }
     }
 }

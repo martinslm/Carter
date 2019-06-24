@@ -125,5 +125,18 @@ namespace Carter.DAL
             }
 
         }
+
+        public void BaixarPagamento(int idDespesa)
+        {
+            var strsql = @"UPDATE despesas
+                            SET valor_pago = 1
+                            WHERE id_despesas = @idDespesa";
+
+            using (var command = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                    command.Parameters.AddWithValue("@idDespesa", idDespesa);
+                    command.ExecuteNonQuery();
+            }
+        }
     }
 }

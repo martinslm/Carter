@@ -15,6 +15,8 @@ namespace Carter.ViewModels
         private DespesaDAL _despesaDAL = new DespesaDAL();
         private string _valorTotal;
         private string _valorTotalColor;
+        private string _alertaMarcarComoPago;
+        private Despesas _despesaSelecionada;
         private IEnumerable<Receitas> _receitas;
         private IEnumerable<Despesas> _despesas;
         private bool _mostrarBotaoPagarEnabled;
@@ -22,8 +24,20 @@ namespace Carter.ViewModels
         private ICommand _botaoSeisMesesCommand;
         private ICommand _botaoMesAtualCommand;
         private ICommand _inserirSalarioCommand;
+        private ICommand _marcarComoPagoCommand;
         #endregion
         #region [Priopriedades Públicas]
+        public string AlertaMarcarComoPago
+        {
+            get
+            {
+                return _alertaMarcarComoPago;
+            }
+            set
+            {
+                _alertaMarcarComoPago = value; 
+            }
+        }
         public string ValorTotal
         {
             get
@@ -52,6 +66,17 @@ namespace Carter.ViewModels
             { return _mostrarBotaoPagarEnabled; }
             set
             { _mostrarBotaoPagarEnabled = value; }
+        }
+        public Despesas DespesaSelecionada
+        {
+            get
+            {
+                return _despesaSelecionada;
+            }
+            set
+            {
+                _despesaSelecionada = value;
+            }
         }
         public IEnumerable<Receitas> Receitas
         {
@@ -105,6 +130,17 @@ namespace Carter.ViewModels
                 _inserirSalarioCommand = value;
             }
         }
+        public ICommand MarcarComoPagoCommand
+        {
+            get
+            {
+                return _marcarComoPagoCommand;
+            }
+            set
+            {
+                _marcarComoPagoCommand = value;
+            }
+        }
         public Action AbrirTelaCadastroLancamentoFinanceiro;
         #endregion
 
@@ -120,6 +156,27 @@ namespace Carter.ViewModels
             _botaoSeisMesesCommand = new CommandHandler(p => FiltrarListagem(PeriodoRelatorio.UltimosSeisMeses));
             _cadastrarLancamentoCommand = new CommandHandler(p => CadastrarLancamento());
             _inserirSalarioCommand = new CommandHandler(p => InserirSalario());
+            _marcarComoPagoCommand = new CommandHandler(p => MarcarComoPago());
+        }
+
+        private void MarcarComoPago()
+        {
+            try
+            {
+                if (_despesaSelecionada.Pago)
+                {
+                    _alertaMarcarComoPago = "Erro: Fatura não está pendente";
+                    RaisePropertyChanged("AlertaMarcarComoPago");
+                    return;
+                }
+                _despesaDAL.BaixarPagamento(_despesaSelecionada.Id);
+                FiltrarListagem(PeriodoRelatorio.MesAtual);
+            }
+            catch
+            {
+                _alertaMarcarComoPago = "Erro: Selecione uma despesa válida.";
+                RaisePropertyChanged("AlertaMarcarComoPago");
+            }
         }
 
         private void CadastrarLancamento()
