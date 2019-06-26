@@ -54,7 +54,7 @@ namespace Carter.ViewModels
         {
             get { return _excluirCommand; }
         }
-
+        public Action AbrirTelaCategorias;
         public CadastrarCategoriaViewModel()
         {
             InstanciarCommands();
@@ -77,7 +77,9 @@ namespace Carter.ViewModels
         }
         private void CadastrarCategoria()
         {
-            if (ValidarDados())
+            _categoriaDAL.CadastrarCategorias();
+
+            /*if (ValidarDados())
             {
                 try
                 {
@@ -85,14 +87,14 @@ namespace Carter.ViewModels
                     string descricao = _descricao;
                     _categoriaDAL.CadastrarCategorias(Descricao,Habilitado);
                     var idUsuario = _categoriaDAL.ObterDadosCategoriaPorId(Descricao);
-                    _categoriaDAL.VincularIdUsuarioAcategoria(idDescricao, idUsuario);*/
+                    _categoriaDAL.VincularIdUsuarioAcategoria(idDescricao, idUsuario);
                 }
                 catch (Exception Ex)
                 {
                     string error = string.Format("Erro ao cadastrar categoria: {0}", Ex);
                     Log.Add(error);
                 }
-            }
+            }*/
         }
         private bool PodeCadastrar()
         {

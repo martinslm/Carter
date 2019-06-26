@@ -53,7 +53,7 @@
             </Grid>
             <ListView Margin="0,150,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListViewItem Width="60"></ListViewItem>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" MouseDown="MinhaConta">
                     <materialDesign:PackIcon Kind="AccountBox" Width="30" Height="30" Foreground="#FFFAFA" VerticalAlignment="Center"/>
                     <TextBlock Text="Minha Conta"
                                VerticalAlignment="Center" 
@@ -126,5 +126,17 @@
         </Grid>
         <Frame x:Name="framePrincipal" NavigationUIVisibility="Hidden"
 				   JournalOwnership="OwnsJournal" Grid.Row="1" Margin="60,10,10,10"/>
+        <StackPanel HorizontalAlignment="Right">
+            <Label RenderTransformOrigin="-0.057,1.086" 
+                       MouseDown="Fechartela">
+                <materialDesign:PackIcon 
+                    Kind="Close" 
+                    Foreground="#3CB371"
+                    Width="25"
+                    Height="25"
+                    Padding="5" RenderTransformOrigin="-0.4,3.08"
+                />
+            </Label>
+        </StackPanel>
     </Grid>
 </Window>

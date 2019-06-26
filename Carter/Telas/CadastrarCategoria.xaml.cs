@@ -26,7 +26,13 @@ namespace Carter.Telas
         {
             InitializeComponent();
             DataContext = _viewModel;
-            ListBoxCategorias.ItemsSource = _viewModel.Categoria;
+            _viewModel.AbrirTelaCategorias = AbrirTelaCategorias;
+        }
+        private void AbrirTelaCategorias()
+        {
+            var cadastrarCategorias = new CadastrarReceitasDespesas();
+            cadastrarCategorias.Owner = Application.Current.MainWindow;
+            cadastrarCategorias.ShowDialog();
         }
 
     }

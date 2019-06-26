@@ -13,9 +13,9 @@ namespace Carter.DAL
     class CategoriaDAL
     {
 
-        public void CadastrarCategorias(string descricao, bool habilitado)
+        public void CadastrarCategorias()
         {
-            string strsql = @"INSERT INTO categoria (
+            var strsql = @"INSERT INTO categoria (
 	                                        descricao
 	                                        ,habilitado
 	                                        )
@@ -26,11 +26,20 @@ namespace Carter.DAL
 
             using (var command = new SqlCommand(strsql, Conexao.Conectar()))
             {
+                command.Parameters.AddWithValue("@idUsuario", Sessao.Usuario.Id);
+
+                command.ExecuteNonQuery();
+            }
+            /*
+            using (var command = new SqlCommand(strsql, Conexao.Conectar()))
+            {
                 command.Parameters.AddWithValue("@descricao", descricao);
                 command.Parameters.AddWithValue("@habilitado", habilitado == true ? 1 : 0);
 
                 command.ExecuteNonQuery();
             }
+
+            */
         }
 
         public Categoria ObterDadosCategoriaPorId(int idCategoria)

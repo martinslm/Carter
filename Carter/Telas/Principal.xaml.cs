@@ -51,6 +51,10 @@ namespace Carter.Telas
             framePrincipal.Navigate(new CadastrarCategoria());
         }
 
+        private void MinhaConta(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            framePrincipal.Navigate(new MinhaConta());
+        }
         private void Estatisticas(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             AbrirTelaEstatistica();

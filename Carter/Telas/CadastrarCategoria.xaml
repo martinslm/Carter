@@ -36,6 +36,10 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+                    <StackPanel Grid.Row="2" Grid.ColumnSpan="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Margin="10" Width="150" Height="30" Command="{Binding HabilitarCommand}" >Habilitar</Button>
+                        <Button Margin="10" Width="150" Height="30" Command="{Binding DesabilitarCommand}" >Desabilitar</Button>
+                    </StackPanel>
                 </StackPanel>
             </ScrollViewer>
         </StackPanel>
@@ -52,7 +56,7 @@
                     </TextBox>
                 </StackPanel>
             </StackPanel>
-            <Button Margin='0,15,0,0' Command="{Binding CadastrarCommand}">Cadastrar</Button>
+            <Button Margin='0,15,0,0' Command="{Binding CadastrarCommand}">Cadastrar Categoria</Button>
             <Label Foreground="DarkRed" TextBlock.FontSize="10"  Padding="10" HorizontalAlignment="Center" FontWeight="Bold" Content="{Binding TextAvisoCadastro}"></Label>
         </StackPanel>
     </Grid>
