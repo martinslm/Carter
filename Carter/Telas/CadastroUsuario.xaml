@@ -116,7 +116,7 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Margin="20" Padding="5" Width="100" Command="{Binding CancelarCommand}">Cancelar</Button>
+                    <Button Margin="20" Padding="5" Width="100" Foreground="#3CB371" Background="White" BorderBrush="White" Command="{Binding CancelarCommand}">Cancelar</Button>
                     <Button Margin="20"  Padding="5" Width="100" Command="{Binding CadastrarCommand}">Cadastrar</Button>
                 </StackPanel>
                 <Label Foreground="DarkRed" TextBlock.FontSize="10"  Padding="10" HorizontalAlignment="Center" FontWeight="Bold" Content="{Binding TextAvisoCadastro}"></Label>

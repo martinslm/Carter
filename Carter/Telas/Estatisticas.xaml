@@ -26,31 +26,172 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
+
         <Grid Grid.Column="1" Grid.Row="1">
             <Rectangle Margin="10"  Height="200" VerticalAlignment="Center" Fill="#DCDCDC" RadiusX="10" RadiusY="10"></Rectangle>
-            <Grid Margin="30,9.7,0,0" Width="40" Background="Black" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"></Grid>
+            <Grid Margin="30,9.7,0,0" Width="40" Background="#3CB371" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid.Effect>
+                    <DropShadowEffect Color="#696969" BlurRadius="10" Opacity="10"/>
+                </Grid.Effect>
+                <materialDesign:PackIcon Kind="SquareIncCash" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Width="25" Height="25"/>
+            </Grid>
+            <StackPanel Margin="0,20,20,0" Orientation="Vertical">
+                <Label
+                   FontSize="18.5"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Light">ÚLTIMO REAJUSTE SALARIAL:</Label>
+                <Label FontSize="60" FontWeight="Heavy"  Content="{Binding PorcentagemAumento}" Margin="85,-15,0,0"/>
+                <Label FontWeight="Light" FontSize="18.5" Content="DESVIO PADRÃO SALARIAL" Margin="20,-10,0,0"/>
+                <Label FontWeight="Heavy" FontSize="35" Content="{Binding DesvioPadraoSalarial}" Margin="80,-10,0,0"/>
+            </StackPanel>
         </Grid>
+
+
+
+
         <Grid Grid.Column="1" Grid.Row="2">
             <Rectangle Margin="10"  Height="200" VerticalAlignment="Center" Fill="#DCDCDC" RadiusX="10" RadiusY="10"></Rectangle>
+
         </Grid>
+
+
         <Grid Grid.Column="1" Grid.Row="3">
             <Rectangle Margin="10"  Height="200" VerticalAlignment="Center" Fill="#DCDCDC" RadiusX="10" RadiusY="10"></Rectangle>
+            <Grid Margin="30,9.7,0,0" Width="40" Background="#4169E1" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid.Effect>
+                    <DropShadowEffect Color="#696969" BlurRadius="10" Opacity="10"/>
+                </Grid.Effect>
+                <materialDesign:PackIcon Kind="Favorite" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Width="25" Height="25"/>
+            </Grid>
+            <StackPanel Margin="0,25,20,0" Orientation="Vertical">
+                <Label
+                   FontSize="28"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Light">TOTAL EM CONTA:</Label>
+                <Label HorizontalAlignment="Right" FontSize="48" FontWeight="Heavy"  Content="{Binding TotalEmConta}" Margin="12,0,0,0"/>
+            </StackPanel>
         </Grid>
+
+
         <Grid Grid.Column="2" Grid.Row="1">
             <Rectangle Margin="10"  Height="200" VerticalAlignment="Center" Fill="#DCDCDC" RadiusX="10" RadiusY="10"></Rectangle>
+            <Grid Margin="30,9.7,0,0" Width="40" Background="#3CB371" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid.Effect>
+                    <DropShadowEffect Color="#696969" BlurRadius="10" Opacity="10"/>
+                </Grid.Effect>
+                <materialDesign:PackIcon Kind="ThumbsUp" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Width="25" Height="25"/>
+            </Grid>
+            <StackPanel Margin="0,25,20,0" Orientation="Vertical">
+                <Label
+                   FontSize="28"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Light">MÉDIA MENSAL DE:</Label>
+                <Label FontSize="52" FontWeight="Heavy"  Content="{Binding MediaReceitas}" Margin="12,-12,0,0"/>
+                <Label FontWeight="Light" FontSize="28" Content="EM RECEITAS" Margin="12,-10,0,0"/>
+            </StackPanel>
         </Grid>
+
+
         <Grid Grid.Column="2" Grid.Row="2">
             <Rectangle Margin="10"  Height="200" VerticalAlignment="Center" Fill="#DCDCDC" RadiusX="10" RadiusY="10"></Rectangle>
+            <Grid Margin="30,9.7,0,0" Width="40" Background="DarkRed" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid.Effect>
+                    <DropShadowEffect Color="#696969" BlurRadius="10" Opacity="10"/>
+                </Grid.Effect>
+                <materialDesign:PackIcon Kind="ThumbDown" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Width="25" Height="25"/>
+            </Grid>
+            <StackPanel Margin="0,25,20,0" Orientation="Vertical">
+                <Label
+                   FontSize="28"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Light">MÉDIA MENSAL DE:</Label>
+                <Label FontSize="52" FontWeight="Heavy"  Content="{Binding MediaDespesas}" Margin="12,-12,0,0"/>
+                <Label FontWeight="Light" FontSize="28" Content="EM DESPESAS" Margin="12,-10,0,0"/>
+            </StackPanel>
         </Grid>
+
+
         <Grid Grid.Column="2" Grid.Row="3">
             <Rectangle Margin="10"  Height="200" VerticalAlignment="Center" Fill="#DCDCDC" RadiusX="10" RadiusY="10"></Rectangle>
         </Grid>
+
         <Grid  Grid.Column="3" Grid.Row="1">
             <Rectangle Margin="10"  Height="200" VerticalAlignment="Center" Fill="#DCDCDC" RadiusX="10" RadiusY="10"></Rectangle>
+            <Grid Margin="30,9.7,0,0" Width="40" Background="#3CB371" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid.Effect>
+                    <DropShadowEffect Color="#696969" BlurRadius="10" Opacity="10"/>
+                </Grid.Effect>
+                <materialDesign:PackIcon Kind="CreditCard" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Width="25" Height="25"/>
+            </Grid>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,30,0">
+                    <Label FontSize="40"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Medium">TOP 3</Label>
+                    <StackPanel Orientation="Vertical">
+                        <Label FontSize="18"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Light">CATEGORIAS</Label>
+                        <Label Margin="0,-18,0,0"
+                   FontSize="20"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Light">UTILIZADAS</Label>
+                        <Label Margin="0,-18,0,0"
+                   FontSize="18"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Light">EM RECEITAS</Label>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Width="50" Height="50" Margin="5" Background="#A9A9A9"></StackPanel>
+                    <StackPanel Width="50" Height="50" Margin="5" Background="#696969"></StackPanel>
+                    <StackPanel Width="50" Height="50" Margin="5" Background="#A9A9A9"></StackPanel>
+                </StackPanel>
+            </StackPanel>
         </Grid>
+
+
         <Grid Grid.Column="3" Grid.Row="2">
             <Rectangle Margin="10"  Height="200" VerticalAlignment="Center" Fill="#DCDCDC" RadiusX="10" RadiusY="10"></Rectangle>
+            <Grid Margin="30,9.7,0,0" Width="40" Background="DarkRed" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid.Effect>
+                    <DropShadowEffect Color="#696969" BlurRadius="10" Opacity="10"/>
+                </Grid.Effect>
+                <materialDesign:PackIcon Kind="AddShoppingCart" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Width="25" Height="25"/>
+            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,30,0">
+                <Label FontSize="40"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Medium">TOP 3</Label>
+                <StackPanel Orientation="Vertical">
+                    <Label FontSize="18"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Light">CATEGORIAS</Label>
+                    <Label Margin="0,-18,0,0"
+                   FontSize="20"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Light">UTILIZADAS</Label>
+                    <Label Margin="0,-18,0,0"
+                   FontSize="17"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Light">EM DESPESAS</Label>
+                </StackPanel>
+            </StackPanel>
         </Grid>
+
+
         <Grid Grid.Column="3" Grid.Row="3">
             <Rectangle Margin="10"  Height="200" VerticalAlignment="Center" Fill="#DCDCDC" RadiusX="10" RadiusY="10"></Rectangle>
 

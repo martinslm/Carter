@@ -75,6 +75,7 @@
     <Compile Include="Formatadores\FormatadorDecimal.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Models\Sessao.cs" />
+    <Compile Include="Services\ServicoReceitasEDespesas.cs" />
     <Compile Include="Telas\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -104,6 +105,7 @@
     <Compile Include="ViewModels\CadastrarCategoriaViewModel.cs" />
     <Compile Include="ViewModels\CadastrarReceitaDespesaViewModel.cs" />
     <Compile Include="ViewModels\CadastroUsuarioViewModel.cs" />
+    <Compile Include="ViewModels\EstatisticaViewModel.cs" />
     <Compile Include="ViewModels\HistoricoDeSalariosViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PrincipalViewModel.cs" />

@@ -103,7 +103,7 @@
                 </TextBox>
             </StackPanel>
             <StackPanel Margin="0,15,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Margin="10" Padding="5" Width="70" Command="{Binding CancelarCommand}">Cancelar</Button>
+                <Button Margin="10" Padding="5" Width="70" Foreground="#3CB371" Background="White" BorderBrush="White" Command="{Binding CancelarCommand}">Cancelar</Button>
                 <Button Margin="10"  Padding="5" Width="130" Command="{Binding CadastrarEFecharCommand}">Cadastrar e Fechar</Button>
                 <Button Margin="10"  Padding="5" Width="80" Command="{Binding CadastrarCommand}">Cadastrar</Button>
             </StackPanel>

@@ -116,6 +116,7 @@ namespace Carter.DAL
             }
             return 0;
         }
+
         public IEnumerable<Salario> ObterHistoricoSalariosPorUsuario()
         {
             var salarios = new List<Salario>();
@@ -144,6 +145,38 @@ namespace Carter.DAL
                 }
                 return salarios;
             }
+        }
+
+        public List<Salario> ObterDoisUltimosSalarios()
+        {
+            var salarios = new List<Salario>();
+            var strsql = @"SELECT TOP 2 id_salario
+                                        , salario
+                                        , data_cadastro
+                                    FROM historico_salarios
+                                    WHERE id_usuario = @idUsuario
+                                    ORDER BY id_salario DESC";
+
+            using (var busca = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                busca.Parameters.AddWithValue("@idUsuario", Sessao.Usuario.Id);
+
+                using (var reader = busca.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var salario = new Salario()
+                        {
+                            Id = Convert.ToInt32(reader["id_salario"]),
+                            DataCadastro = Convert.ToDateTime(reader["data_cadastro"]),
+                            Valor = Convert.ToDecimal(reader["salario"])
+                        };
+
+                        salarios.Add(salario);
+                    }
+                }
+            }
+            return salarios;
         }
     }
 }

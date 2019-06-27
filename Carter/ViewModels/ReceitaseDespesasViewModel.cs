@@ -1,6 +1,7 @@
 ﻿using Carter.DAL;
 using Carter.Enums;
 using Carter.Models;
+using Carter.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,7 @@ namespace Carter.ViewModels
     public class ReceitaseDespesasViewModel : BindableObject
     {
         #region [Propriedades Privadas]
+        private readonly ServicoReceitasEDespesas _servicoReceitaDespesa;
         private ReceitaDAL _receitaDAL = new ReceitaDAL();
         private DespesaDAL _despesaDAL = new DespesaDAL();
         private string _valorTotal;
@@ -146,6 +148,7 @@ namespace Carter.ViewModels
 
         public ReceitaseDespesasViewModel()
         {
+            _servicoReceitaDespesa = new ServicoReceitasEDespesas();
             FiltrarListagem(PeriodoRelatorio.MesAtual);
             InstanciarCommands();
         }
@@ -188,15 +191,15 @@ namespace Carter.ViewModels
         private void InserirSalario()
         {
             _receitaDAL.InserirSalario();
-            _receitas = _receitaDAL.ObterReceitasPorPeriodo(PeriodoRelatorio.MesAtual);
+            _receitas = _servicoReceitaDespesa.ObterReceitasPorPeriodo(PeriodoRelatorio.MesAtual);
             AtualizarValorTotal();
             RaisePropertyChanged("Receitas");
         }
 
         private void FiltrarListagem(PeriodoRelatorio periodo)
         {
-            _receitas = _receitaDAL.ObterReceitasPorPeriodo(periodo);
-            _despesas = _despesaDAL.ObterDespesasPorPeriodo(periodo);
+            _receitas = _servicoReceitaDespesa.ObterReceitasPorPeriodo(periodo);
+            _despesas = _servicoReceitaDespesa.ObterDespesasPorPeriodo(periodo);
             AtualizarValorTotal();
             RaisePropertyChanged("Receitas");
             RaisePropertyChanged("Despesas");
@@ -204,19 +207,8 @@ namespace Carter.ViewModels
 
         private void AtualizarValorTotal()
         {
-            decimal totalReceitas = 0, totalDespesas = 0;
-            foreach(var rec in _receitas)
-            {
-                totalReceitas += rec.Valor;
-            }
-            foreach(var desp in _despesas)
-            {
-                if(desp.Pago)
-                totalDespesas += desp.Valor;
-            }
-
-            _valorTotal = string.Format("   Total: R$ {0:N2}", totalReceitas - totalDespesas);
-            _valorTotalColor = (totalReceitas - totalDespesas) <= 0 ? "DarkRed" : "#3CB371";
+            _valorTotal = _servicoReceitaDespesa.ObterValorTotalEmConta(_despesas, _receitas);
+            _valorTotalColor = _valorTotal.Contains("-") ? "DarkRed" : "#3CB371";
             RaisePropertyChanged("ValorTotal");
             RaisePropertyChanged("ValorTotalColor");
         }

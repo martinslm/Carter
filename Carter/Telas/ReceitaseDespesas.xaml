@@ -27,6 +27,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
+        
         <StackPanel Margin="100,30,30,30" Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
             <Label Margin="100,0,0,0" VerticalAlignment="Center">Filtrar por:</Label>
             <Button Margin="10" Width="100" Height="30" Command="{Binding BotaoMesAtualCommand}" >Mês Atual</Button>
