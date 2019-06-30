@@ -15,11 +15,15 @@ namespace Carter.ViewModels
         #region [Atributos Privados]
         private ServicoReceitasEDespesas _ServicoReceitasDespesas = new ServicoReceitasEDespesas();
         private SalarioDAL _salarioDAL = new SalarioDAL();
+        private CategoriaDAL _categoriaDAL = new CategoriaDAL();
         private string _porcentagemAumento;
         private string _desvioPadraoSalarial;
         private string _mediaReceitas;
         private string _mediaDespesas;
         private string _totalEmConta;
+        private decimal _totalDespesas;
+        private decimal _totalReceitas;
+        private int _totalDespesasPendentes; 
         private List<Receitas> _receitas
         {
             get
@@ -32,6 +36,20 @@ namespace Carter.ViewModels
             get
             {
                 return (List<Despesas>)_ServicoReceitasDespesas.ObterDespesasPorPeriodo(PeriodoRelatorio.MesAtual);
+            }
+        }
+        private List<Categoria> _categoriasReceitas
+        {
+            get
+            {
+                return _categoriaDAL.ObterTop3Receitas();
+            }
+        }
+        private List<Categoria> _categoriasDespesas
+        {
+            get
+            {
+                return _categoriaDAL.ObterTop3Despesas();
             }
         }
         #endregion
@@ -71,6 +89,23 @@ namespace Carter.ViewModels
                 return _totalEmConta;
             }
         }
+        public int TotalDespesasPendentes
+        {
+            get
+            {
+                return _totalDespesasPendentes;
+            }
+            set
+            {
+                _totalDespesasPendentes = value;
+            }
+        }
+        public RankingTops Top1Receita { get; set; }
+        public RankingTops Top2Receita { get; set; }
+        public RankingTops Top3Receita { get; set; }
+        public RankingTops Top1Despesa { get; set; }
+        public RankingTops Top2Despesa { get; set; }
+        public RankingTops Top3Despesa { get; set; }
         #endregion
         public EstatisticaViewModel()
         {
@@ -78,6 +113,50 @@ namespace Carter.ViewModels
             ObterValoresDashDespesas();
             ObterValoresDashReceitas();
             ObterValoresDashSalario();
+             ObterValoresDashCategoria();
+        }
+
+        private void ObterValoresDashCategoria()
+        {
+            #region [Atribuir Valores]
+            Top1Receita = new RankingTops()
+            {
+                DescricaoCategoria = _categoriasReceitas.Select(c => c.Descricao).ElementAt(0),
+                Porcentagem = (_categoriasReceitas.Select(c => c.ValorTotal).ElementAt(0) * 100) / _totalReceitas
+             };
+            Top2Receita = new RankingTops()
+            {
+                DescricaoCategoria = _categoriasReceitas.Select(c => c.Descricao).ElementAt(1),
+                Porcentagem = (_categoriasReceitas.Select(c => c.ValorTotal).ElementAt(1) * 100) / _totalReceitas
+            };
+            Top3Receita = new RankingTops()
+            {
+                DescricaoCategoria = _categoriasReceitas.Select(c => c.Descricao).ElementAt(2),
+                Porcentagem = (_categoriasReceitas.Select(c => c.ValorTotal).ElementAt(2) * 100) / _totalReceitas
+            };
+
+            Top1Despesa = new RankingTops()
+            {
+                DescricaoCategoria = _categoriasDespesas.Select(c => c.Descricao).ElementAt(0),
+                Porcentagem = (_categoriasDespesas.Select(c => c.ValorTotal).ElementAt(0) * 100) / _totalDespesas
+            };
+            Top2Despesa = new RankingTops()
+            {
+                DescricaoCategoria = _categoriasDespesas.Select(c => c.Descricao).ElementAt(1),
+                Porcentagem = (_categoriasDespesas.Select(c => c.ValorTotal).ElementAt(1) * 100) / _totalDespesas
+            };
+            Top3Despesa = new RankingTops()
+            {
+                DescricaoCategoria = _categoriasDespesas.Select(c => c.Descricao).ElementAt(2),
+                Porcentagem = (_categoriasDespesas.Select(c => c.ValorTotal).ElementAt(2) * 100) / _totalDespesas
+            };
+            #endregion
+            RaisePropertyChanged("Top1Receita");
+            RaisePropertyChanged("Top2Receita");
+            RaisePropertyChanged("Top3Receita");
+            RaisePropertyChanged("Top1Despesa");
+            RaisePropertyChanged("Top2Despesa");
+            RaisePropertyChanged("Top3Despesa");
         }
 
         private void ObterValoresDashTotalEmConta()
@@ -89,7 +168,9 @@ namespace Carter.ViewModels
         private void ObterValoresDashDespesas()
         {
             _mediaDespesas = ObterMediaDespesas();
+            _totalDespesasPendentes = _despesas.Where(d => d.Pago == false).Count();
             RaisePropertyChanged("MediaDespesas");
+            RaisePropertyChanged("TotalDespesasPendentes");
         }
 
         private void ObterValoresDashReceitas()
@@ -157,14 +238,15 @@ namespace Carter.ViewModels
         {
             try
             {
-                decimal totalReceitas = 0, media;
+                _totalReceitas = 0;
+                decimal media;
 
                 foreach (var receita in _receitas)
                 {
-                    totalReceitas += receita.Valor;
+                    _totalReceitas += receita.Valor;
                 }
 
-                media = totalReceitas / _receitas.Count();
+                media = _totalReceitas / _receitas.Count();
 
                 return string.Format("R${0:N2}", media);
             }
@@ -178,14 +260,15 @@ namespace Carter.ViewModels
         {
             try
             {
-                decimal totalDespesas = 0, media;
+                _totalDespesas = 0;
+                decimal media;
 
                 foreach (var despesa in _despesas)
                 {
-                    totalDespesas += despesa.Valor;
+                    _totalDespesas += despesa.Valor;
                 }
 
-                media = totalDespesas / _despesas.Count();
+                media = _totalDespesas / _despesas.Count();
 
                 return string.Format("R${0:N2}", media);
             }

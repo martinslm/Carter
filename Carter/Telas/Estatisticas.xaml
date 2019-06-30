@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:Carter.Telas"
       xmlns:Formatadores="clr-namespace:Carter.Formatadores"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:MetroChart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="700"
       Title="Estatisticas">
@@ -52,7 +53,23 @@
 
         <Grid Grid.Column="1" Grid.Row="2">
             <Rectangle Margin="10"  Height="200" VerticalAlignment="Center" Fill="#DCDCDC" RadiusX="10" RadiusY="10"></Rectangle>
+            <Grid Margin="30,9.7,0,0" Width="40" Background="DarkRed" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid.Effect>
+                    <DropShadowEffect Color="#696969" BlurRadius="10" Opacity="10"/>
+                </Grid.Effect>
+                <materialDesign:PackIcon Kind="AlertOutline" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Width="25" Height="25"/>
+            </Grid>
 
+            <StackPanel Margin="0,25,18,0" Orientation="Vertical">
+                <Label
+                   FontSize="28"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" 
+                   FontWeight="Light"
+                    Content="TOTAL DE DESPESAS"/>
+                <Label FontWeight="DemiBold" FontSize="22.8" Content="PENDENTES DE PAGAMENTO" Margin="12,-5,0,0"/>
+                <Label FontSize="65" FontWeight="Heavy" HorizontalAlignment="Center"  Content="{Binding TotalDespesasPendentes}" Margin="12,-12,0,0"/>
+            </StackPanel>
         </Grid>
 
 
@@ -117,6 +134,34 @@
 
         <Grid Grid.Column="2" Grid.Row="3">
             <Rectangle Margin="10"  Height="200" VerticalAlignment="Center" Fill="#DCDCDC" RadiusX="10" RadiusY="10"></Rectangle>
+            <StackPanel Margin="0,25,20,0" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <materialDesign:PackIcon Kind="EmoticonSad" 
+                                             Width="28" 
+                                             Height="28" 
+                                             Margin="10" 
+                                             Foreground="DarkRed"
+                                             HorizontalAlignment="Right"/>
+                    <Label
+                   FontSize="28"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" 
+                   Foreground="DarkRed"
+                   FontWeight="Light">OOOOOPS!</Label>
+                </StackPanel>
+                <Label HorizontalAlignment="Right" 
+                       FontSize="30" 
+                       FontWeight="Heavy"
+                       Foreground="DarkRed"
+                       Content="ESTA VISÃO AINDA" 
+                       Margin="10,0,0,0"/>
+                <Label HorizontalAlignment="Right" 
+                       FontSize="25" 
+                       FontWeight="Heavy"
+                       Foreground="DarkRed" 
+                       Content="NÃO ESTÁ DISPONÍVEL" 
+                       Margin="10,-10,0,0"/>
+            </StackPanel>
         </Grid>
 
         <Grid  Grid.Column="3" Grid.Row="1">
@@ -127,33 +172,43 @@
                 </Grid.Effect>
                 <materialDesign:PackIcon Kind="CreditCard" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Width="25" Height="25"/>
             </Grid>
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,30,0">
-                    <Label FontSize="40"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,30,0">
+                <Label FontSize="40"
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Top" 
                    FontWeight="Medium">TOP 3</Label>
-                    <StackPanel Orientation="Vertical">
-                        <Label FontSize="18"
+                <StackPanel Orientation="Vertical">
+                    <Label FontSize="18"
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Top" 
                    FontWeight="Light">CATEGORIAS</Label>
-                        <Label Margin="0,-18,0,0"
+                    <Label Margin="0,-18,0,0"
                    FontSize="20"
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Top" 
                    FontWeight="Light">UTILIZADAS</Label>
-                        <Label Margin="0,-18,0,0"
+                    <Label Margin="0,-18,0,0"
                    FontSize="18"
                    HorizontalAlignment="Right" 
                    VerticalAlignment="Top" 
                    FontWeight="Light">EM RECEITAS</Label>
-                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Width="50" Height="50" Margin="5" Background="#A9A9A9"></StackPanel>
-                    <StackPanel Width="50" Height="50" Margin="5" Background="#696969"></StackPanel>
-                    <StackPanel Width="50" Height="50" Margin="5" Background="#A9A9A9"></StackPanel>
+            </StackPanel>
+            <StackPanel Width="{Binding Top1Receita.TamanhoBarraGrafico}" Height="25" Background="#2E8B57" Margin="20,3,3,3" HorizontalAlignment="Left">
+                <Label Content="{Binding Top1Receita.TextoGrafico}" Foreground="White" FontWeight="ExtraLight" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20,56,3,3">
+                <StackPanel Width="{Binding Top2Receita.TamanhoBarraGrafico}" Height="25" Background="#3CB371" HorizontalAlignment="Left">
+                </StackPanel>
+                <StackPanel Margin="0,65,3,3">
+                    <Label Content="{Binding Top2Receita.TextoGrafico}" Foreground="Black" FontWeight="ExtraLight" HorizontalAlignment="Left" FontSize="10"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20,110,3,3">
+                <StackPanel Width="{Binding Top3Receita.TamanhoBarraGrafico}" Height="25" Background="#8FBC8F" HorizontalAlignment="Left">
+                </StackPanel>
+                <StackPanel  Margin="0,42,3,3">
+                    <Label Content="{Binding Top3Receita.TextoGrafico}" Foreground="Black" FontWeight="ExtraLight" HorizontalAlignment="Left" FontSize="9.5"/>
                 </StackPanel>
             </StackPanel>
         </Grid>
@@ -189,12 +244,49 @@
                    FontWeight="Light">EM DESPESAS</Label>
                 </StackPanel>
             </StackPanel>
+            <StackPanel Width="{Binding Top1Despesa.TamanhoBarraGrafico}" Height="25" Background="#8B0000" Margin="20,3,3,3" HorizontalAlignment="Left">
+                <Label Content="{Binding Top1Despesa.TextoGrafico}" Foreground="White" FontWeight="ExtraLight" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Width="{Binding Top2Despesa.TamanhoBarraGrafico}" Height="25" Background="#B22222" Margin="20,56,3,3" HorizontalAlignment="Left">
+                <Label Content="{Binding Top2Despesa.TextoGrafico}" Foreground="White" FontWeight="ExtraLight" HorizontalAlignment="Left" FontSize="10"/>
+            </StackPanel>
+            <StackPanel Width="{Binding Top3Despesa.TamanhoBarraGrafico}" Height="25" Background="#A52A2A" Margin="20,110,3,3" HorizontalAlignment="Left">
+                <Label Content="{Binding Top3Despesa.TextoGrafico}" Foreground="White" FontWeight="ExtraLight" HorizontalAlignment="Left" FontSize="8.5" VerticalAlignment="Center"/>
+            </StackPanel>
         </Grid>
 
 
         <Grid Grid.Column="3" Grid.Row="3">
             <Rectangle Margin="10"  Height="200" VerticalAlignment="Center" Fill="#DCDCDC" RadiusX="10" RadiusY="10"></Rectangle>
-
+            <StackPanel Margin="0,25,20,0" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <materialDesign:PackIcon Kind="EmoticonSad" 
+                                             Width="28" 
+                                             Height="28" 
+                                             Margin="10" 
+                                             Foreground="DarkRed"
+                                             HorizontalAlignment="Right"/>
+                    <Label
+                   FontSize="28"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" 
+                   Foreground="DarkRed"
+                   FontWeight="Light">OOOOOPS!</Label>
+                </StackPanel>
+                <Label HorizontalAlignment="Right" 
+                       FontSize="30" 
+                       FontWeight="Heavy"
+                       Foreground="DarkRed"
+                       Content="ESTA VISÃO AINDA" 
+                       Margin="10,0,0,0"/>
+                <Label HorizontalAlignment="Right" 
+                       FontSize="25" 
+                       FontWeight="Heavy"
+                       Foreground="DarkRed" 
+                       Content="NÃO ESTÁ DISPONÍVEL" 
+                       Margin="10,-10,0,0"/>
+            </StackPanel>
         </Grid>
+        
     </Grid>
 </Page>
