@@ -14,6 +14,7 @@ namespace Carter.ViewModels
         private CategoriaDAL _categoriaDAL = new CategoriaDAL();
         private UsuarioDAL _usuarioDAL = new UsuarioDAL();
         private IEnumerable<Categoria> _categoria;
+        private string _textAvisoCadastro;
         private ICommand _cadastrarCommand;
         private ICommand _cancelarCommand;
         private ICommand _excluirCommand;
@@ -32,7 +33,7 @@ namespace Carter.ViewModels
             set
             {
                 _descricao = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("CadastrarCommand");
             }
         }
         public IEnumerable<Categoria> Categoria
@@ -41,6 +42,11 @@ namespace Carter.ViewModels
             {
                 return _categoria;
             }
+        }
+        public string TextAvisoCadastro
+        {
+            get { return _textAvisoCadastro; }
+            set { _textAvisoCadastro = value; }
         }
         public ICommand CadastrarCommand
         {
@@ -58,7 +64,7 @@ namespace Carter.ViewModels
         public CadastrarCategoriaViewModel()
         {
             InstanciarCommands();
-            _categoria = _usuarioDAL.BuscarCategorias();
+            AtualizarListagemCategorias();
         }
         private void InstanciarCommands()
         {
@@ -77,28 +83,29 @@ namespace Carter.ViewModels
         }
         private void CadastrarCategoria()
         {
-            _categoriaDAL.CadastrarCategorias();
-
-            /*if (ValidarDados())
+            
+            try
             {
-                try
-                {
-                    /*int idCategoria = 0;
-                    string descricao = _descricao;
-                    _categoriaDAL.CadastrarCategorias(Descricao,Habilitado);
-                    var idUsuario = _categoriaDAL.ObterDadosCategoriaPorId(Descricao);
-                    _categoriaDAL.VincularIdUsuarioAcategoria(idDescricao, idUsuario);
-                }
-                catch (Exception Ex)
-                {
-                    string error = string.Format("Erro ao cadastrar categoria: {0}", Ex);
-                    Log.Add(error);
-                }
-            }*/
+                _categoriaDAL.CadastrarCategorias(Descricao);
+                Descricao = string.Empty;
+                RaisePropertyChanged("Descricao");
+                _textAvisoCadastro = "Categoria cadastrada";
+                RaisePropertyChanged("TextAvisoCadastro");
+                AtualizarListagemCategorias();
+                return;
+            }
+            catch (Exception ex)
+            {
+                var teste = ex;
+                _textAvisoCadastro = "Houve um erro ao cadastrar a categoria";
+                RaisePropertyChanged("TextAvisoCadastro");
+            }
+
+
         }
         private bool PodeCadastrar()
         {
-            if (Descricao == null)
+            if (_descricao == null)
                 return false;
 
             return true;
@@ -111,9 +118,8 @@ namespace Carter.ViewModels
         }
         private void AtualizarListagemCategorias()
         {
-            //_categorias = _categoriaDAL.ObterDadosCategoriaPorId();
-            //erro ao atualizar listagem - VER DEPOIS
-            //RaisePropertyChanged();
+            _categoria = _usuarioDAL.BuscarCategorias();
+            RaisePropertyChanged("Categoria");
         }
     }
 }

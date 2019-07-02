@@ -1,32 +1,22 @@
 ﻿using Carter.ViewModels;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Carter.Telas
 {
     /// <summary>
     /// Lógica interna para MinhaConta.xaml
     /// </summary>
-    public partial class MinhaConta : Window
+    public partial class MinhaConta : Page
     {
-        private readonly MinhaConta _viewmodel;
-        /*
+        private readonly MinhaContaViewModel _viewmodel;
+        
         public MinhaConta()
         {
-            _viewmodel = new MinhaConta();
+            _viewmodel = new MinhaContaViewModel();
             InitializeComponent();
             DataContext = _viewmodel;
-            viewmodel.AtribuirSenhas = AtribuirSenhas;
-            _viewmodel.FecharTela = FecharTela;
-        }
-        private void AtribuirSenhas()
-        {
-            _viewmodel.Senha = SenhaCadastro.Password;
-            _viewmodel.ConfirmacaoSenha = SenhaConfirmacao.Password;
-        }
-        */
-        private void FecharTela(bool dialogResult)
-        {
-            DialogResult = dialogResult;
-        }
+        }        
+
     }
 }

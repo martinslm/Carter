@@ -119,7 +119,21 @@ namespace Carter.DAL
                 command.ExecuteNonQuery();
             }
         }
+        internal void AtualizarContaUsuario(string email, bool utilizaPoupanca, int idCategoriaPoupanca = 0)
+        {
+            string strsql = @" UPDATE usuario
+                               SET email = @email,
+	                               utiliza_poupanca = @utiliza_poupanca
+                                   WHERE id_usuario = @idUsuario";
 
+            using (var command = new SqlCommand(strsql, Conexao.Conectar()))
+            {
+                command.Parameters.AddWithValue("@idUsuario", Sessao.Usuario.Id);
+                command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@utilizaPoupanca", utilizaPoupanca == true ? 1 : 0);
+                command.ExecuteNonQuery();
+            }
+        }
         public int ObterIdUsuarioPorEmail(string email)
         {
             string strsql = @"SELECT id_usuario

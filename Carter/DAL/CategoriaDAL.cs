@@ -10,12 +10,12 @@ using System.Data.SqlClient;
 
 namespace Carter.DAL
 {
-    class CategoriaDAL
+    public class CategoriaDAL
     {
         private DateTime _dataInicio = Convert.ToDateTime(string.Format("01/{0}/{1}", DateTime.Now.Month, DateTime.Now.Year));
         private DateTime _dataFim = Convert.ToDateTime(string.Format("{0}/{1}/{2}", DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month), DateTime.Now.Month, DateTime.Now.Year));
 
-        public void CadastrarCategorias()
+        public void CadastrarCategorias(string descricao)
         {
             var strsql = @"INSERT INTO categoria (
 	                                        descricao
@@ -29,7 +29,8 @@ namespace Carter.DAL
             using (var command = new SqlCommand(strsql, Conexao.Conectar()))
             {
                 command.Parameters.AddWithValue("@idUsuario", Sessao.Usuario.Id);
-
+                command.Parameters.AddWithValue("@descricao", descricao);
+                command.Parameters.AddWithValue("@habilitado", 1);
                 command.ExecuteNonQuery();
             }
             /*

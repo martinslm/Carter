@@ -14,7 +14,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50">
+        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="50">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <StackPanel 
@@ -36,10 +36,6 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <StackPanel Grid.Row="2" Grid.ColumnSpan="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Margin="10" Width="150" Height="30" Command="{Binding HabilitarCommand}" >Habilitar</Button>
-                        <Button Margin="10" Width="150" Height="30" Command="{Binding DesabilitarCommand}" >Desabilitar</Button>
-                    </StackPanel>
                 </StackPanel>
             </ScrollViewer>
         </StackPanel>
@@ -51,7 +47,7 @@
                          Width="150"
                          x:Name="Descricao"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-                        <Binding Path="NovaCategoria">
+                        <Binding Path="Descricao">
                         </Binding>
                     </TextBox>
                 </StackPanel>

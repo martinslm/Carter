@@ -24,8 +24,7 @@ namespace Carter.ViewModels
         public Action AtribuirSenhas;
         public Action<bool> FecharTela { get; set; }
         #region [Atributos Publicos]
-        public string Senha { get; set; }
-        public string ConfirmacaoSenha { get; set; }
+
         public string TextAvisoCadastro
         {
             get
@@ -35,6 +34,7 @@ namespace Carter.ViewModels
             set
             {
                 _textAvisoCadastro = value;
+                RaisePropertyChanged();
             }
         }
         public string Email
@@ -71,6 +71,7 @@ namespace Carter.ViewModels
             set
             {
                 _utilizaPoupanca = value;
+                RaisePropertyChanged();
                 AtualizarIsEnabled();
             }
         }
@@ -96,6 +97,7 @@ namespace Carter.ViewModels
             set
             {
                 _valorPoupanca = value;
+                RaisePropertyChanged();
             }
         }
         public DateTime DataObjetivoPoupanca
@@ -107,6 +109,7 @@ namespace Carter.ViewModels
             set
             {
                 _dataObjetivoPoupanca = value;
+                RaisePropertyChanged();
             }
         }
         public Categoria CategoriaPoupanca
@@ -118,6 +121,7 @@ namespace Carter.ViewModels
             set
             {
                 _categoriaPoupanca = value;
+                RaisePropertyChanged();
             }
         }
         public List<Categoria> Categoria
@@ -140,6 +144,18 @@ namespace Carter.ViewModels
         public MinhaContaViewModel()
         {
             InstanciarCommands();
+            AtribuirDadosUsuarioLogado();
+        }
+
+        private void AtribuirDadosUsuarioLogado()
+        {
+            Email = Sessao.Usuario.Email;
+            Salario = Sessao.Usuario.SalarioAtual.Valor;
+            UtilizaPoupanca = Sessao.Usuario.UtilizaPoupanca;
+            ValorPoupanca = Sessao.Usuario.ObjetivoValorPoupanca != null ? Sessao.Usuario.ObjetivoValorPoupanca.Valor : 0;
+            DataObjetivoPoupanca = Sessao.Usuario.ObjetivoValorPoupanca != null ? Sessao.Usuario.ObjetivoValorPoupanca.DataObjetivo : DateTime.MinValue;
+            CategoriaPoupanca = Sessao.Usuario.CategoriaPoupanca != null ? Sessao.Usuario.CategoriaPoupanca : new Categoria();
+
         }
         #endregion
         private void InstanciarCommands()
@@ -185,8 +201,7 @@ namespace Carter.ViewModels
 
         private bool PodeAlterar()
         {
-            AtribuirSenhas();
-            if (Email == null || Salario <= 0 || Senha == null || ConfirmacaoSenha == null)
+            if (Email == null || Salario <= 0)
                 return false;
 
             return true;
@@ -194,12 +209,6 @@ namespace Carter.ViewModels
 
         private bool ValidarDados()
         {
-            if (Senha != ConfirmacaoSenha)
-            {
-                _textAvisoCadastro = "Senhas não conferem";
-                RaisePropertyChanged("TextAvisoCadastro");
-                return false;
-            }
 
             if (UtilizaPoupanca && !ValidarDadosPoupanca())
             {
