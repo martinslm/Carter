@@ -85,13 +85,9 @@ namespace Carter.DAL
                 busca.Parameters.AddWithValue("@email", email);
                 using (var reader = busca.ExecuteReader())
                 {
-                    if (reader.Read())
-                    {
-                        return true;
-                    }
+                    return reader.Read();
                 }
             }
-            return false;
         }
 
         public void CadastrarUsuario(string email, string senha, int idSalario, bool utilizaPoupanca)

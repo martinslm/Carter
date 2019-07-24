@@ -113,7 +113,7 @@ namespace Carter.ViewModels
             ObterValoresDashDespesas();
             ObterValoresDashReceitas();
             ObterValoresDashSalario();
-             //ObterValoresDashCategoria();
+            ObterValoresDashCategoria();
         }
 
         private void ObterValoresDashCategoria()

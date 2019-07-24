@@ -16,7 +16,8 @@ namespace Carter
             get
             {
                 if (_connection == null)
-                    _connection = new SqlConnection(@"Data Source=DESKTOP-G6S0TN2\SQLEXPRESS;Initial Catalog=Carter;Integrated Security=True");
+                   // _connection = new SqlConnection(@"Data Source=DESKTOP-G6S0TN2\SQLEXPRESS;Initial Catalog=Carter;Integrated Security=True");
+                    _connection = new SqlConnection(@"Data Source=DESKTOP-KU4CSAM\SQLEXPRESS;Initial Catalog=carterSystem;Integrated Security=True");
                 return _connection;
             }
         }

@@ -33,16 +33,6 @@ namespace Carter.DAL
                 command.Parameters.AddWithValue("@habilitado", 1);
                 command.ExecuteNonQuery();
             }
-            /*
-            using (var command = new SqlCommand(strsql, Conexao.Conectar()))
-            {
-                command.Parameters.AddWithValue("@descricao", descricao);
-                command.Parameters.AddWithValue("@habilitado", habilitado == true ? 1 : 0);
-
-                command.ExecuteNonQuery();
-            }
-
-            */
         }
 
         public Categoria ObterDadosCategoriaPorId(int idCategoria)
